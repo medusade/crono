@@ -213,9 +213,28 @@ public:
 #endif // defined(PTHREAD_MUTEX_HAS_TIMEDLOCK)
         } else {
             if (0 > (waitMilliseconds)) {
-                return Lock();
+                return UntimedLock();
             } else {
                 return TryLock();
+            }
+        }
+        return LockFailed;
+    }
+    virtual LockStatus UntimedLock() {
+        pthread_mutex_t* mutex = 0;
+        if ((mutex = this->m_attachedTo)) {
+            int err = 0;
+            if ((err =  pthread_mutex_lock(mutex))) {
+                switch(err) {
+                case ETIMEDOUT:
+                    return LockBusy;
+                case EINTR:
+                    return LockInterrupted;
+                default:
+                    return LockFailed;
+                }
+            } else {
+                return LockSuccess;
             }
         }
         return LockFailed;

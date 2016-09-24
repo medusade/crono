@@ -13,37 +13,30 @@
 /// or otherwise) arising in any way out of the use of this software, 
 /// even if advised of the possibility of such damage.
 ///
-///   File: Base.hpp
+///   File: Main_main.cpp
 ///
 /// Author: $author$
-///   Date: 9/21/2016
+///   Date: 9/23/2016
 ///////////////////////////////////////////////////////////////////////
-#ifndef _CRONO_BASE_BASE_HPP
-#define _CRONO_BASE_BASE_HPP
+#include "crono/console/Main_main.hpp"
+#include "crono/mt/os/Mutex.hpp"
+#include "crono/mt/Logger.hpp"
 
-#include "nadir/base/string.hpp"
-#include "nadir/base/base.hpp"
+///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
+int main(int argc, char** argv, char** env) {
+    int err = 0;
+    ::crono::mt::os::Mutex locked;
+    ::crono::mt::Logger logger(locked);
 
-namespace crono {
+    CRONO_SET_DEFAULT_LOGGER(&logger);
 
-typedef ::nadir::implement_base ImplementBase;
-typedef ::nadir::base Base;
+    CRONO_LOGGER_INIT();
 
-typedef ::nadir::char_string String;
-typedef ::nadir::tchar_string TString;
-typedef ::nadir::wchar_string WString;
+    CRONO_SET_LOGGING_LEVEL(CRONO_LOGGING_LEVELS_ALL);
 
-typedef ::nadir::pointer_t pointer_t;
-typedef ::nadir::unsigned_t unsigned_t;
-typedef ::nadir::signed_t signed_t;
+    ::crono::console::Main::TheMain(argc, argv, env);
 
-inline const pointer_t& to_pointer(const pointer_t& v) { return v; }
-inline const unsigned_t& to_unsigned(const unsigned_t& v) { return v; }
-inline const signed_t& to_signed(const signed_t& v) { return v; }
-inline const wchar_t& to_wchar(const wchar_t& v) { return v; }
-inline const char& to_char(const char& v) { return v; }
-inline const bool& to_bool(const bool& v) { return v; }
-
-} // namespace crono
-
-#endif // _CRONO_BASE_BASE_HPP 
+    CRONO_LOGGER_FINI();
+    return err;
+}

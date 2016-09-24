@@ -16,34 +16,11 @@
 ///   File: Base.hpp
 ///
 /// Author: $author$
-///   Date: 9/21/2016
+///   Date: 9/23/2016
 ///////////////////////////////////////////////////////////////////////
-#ifndef _CRONO_BASE_BASE_HPP
-#define _CRONO_BASE_BASE_HPP
+#ifndef _PATRONA_CPP_XOS_BASE_BASE_HPP
+#define _PATRONA_CPP_XOS_BASE_BASE_HPP
 
-#include "nadir/base/string.hpp"
-#include "nadir/base/base.hpp"
+#include "crono/base/Base.hpp"
 
-namespace crono {
-
-typedef ::nadir::implement_base ImplementBase;
-typedef ::nadir::base Base;
-
-typedef ::nadir::char_string String;
-typedef ::nadir::tchar_string TString;
-typedef ::nadir::wchar_string WString;
-
-typedef ::nadir::pointer_t pointer_t;
-typedef ::nadir::unsigned_t unsigned_t;
-typedef ::nadir::signed_t signed_t;
-
-inline const pointer_t& to_pointer(const pointer_t& v) { return v; }
-inline const unsigned_t& to_unsigned(const unsigned_t& v) { return v; }
-inline const signed_t& to_signed(const signed_t& v) { return v; }
-inline const wchar_t& to_wchar(const wchar_t& v) { return v; }
-inline const char& to_char(const char& v) { return v; }
-inline const bool& to_bool(const bool& v) { return v; }
-
-} // namespace crono
-
-#endif // _CRONO_BASE_BASE_HPP 
+#endif // _PATRONA_CPP_XOS_BASE_BASE_HPP 

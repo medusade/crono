@@ -13,37 +13,36 @@
 /// or otherwise) arising in any way out of the use of this software, 
 /// even if advised of the possibility of such damage.
 ///
-///   File: Base.hpp
+///   File: Mutex.hpp
 ///
 /// Author: $author$
-///   Date: 9/21/2016
+///   Date: 9/23/2016
 ///////////////////////////////////////////////////////////////////////
-#ifndef _CRONO_BASE_BASE_HPP
-#define _CRONO_BASE_BASE_HPP
+#ifndef _CRONO_MT_OS_MUTEX_HPP
+#define _CRONO_MT_OS_MUTEX_HPP
 
-#include "nadir/base/string.hpp"
-#include "nadir/base/base.hpp"
+#include "crono/mt/os/Os.hpp"
+#include "crono/mt/Mutex.hpp"
+
+#if defined(WINDOWS)
+// Windows
+#include "crono/mt/microsoft/windows/Mutex.hpp"
+#elif defined(MACOSX)
+// MacOSX
+#include "crono/mt/apple/osx/Mutex.hpp"
+#else // defined(WINDOWS)
+// Unix
+#include "crono/mt/posix/Mutex.hpp"
+#endif // defined(WINDOWS)
 
 namespace crono {
+namespace mt {
+namespace os {
 
-typedef ::nadir::implement_base ImplementBase;
-typedef ::nadir::base Base;
+typedef os::Mutex Mutex;
 
-typedef ::nadir::char_string String;
-typedef ::nadir::tchar_string TString;
-typedef ::nadir::wchar_string WString;
+} // namespace os 
+} // namespace mt 
+} // namespace crono 
 
-typedef ::nadir::pointer_t pointer_t;
-typedef ::nadir::unsigned_t unsigned_t;
-typedef ::nadir::signed_t signed_t;
-
-inline const pointer_t& to_pointer(const pointer_t& v) { return v; }
-inline const unsigned_t& to_unsigned(const unsigned_t& v) { return v; }
-inline const signed_t& to_signed(const signed_t& v) { return v; }
-inline const wchar_t& to_wchar(const wchar_t& v) { return v; }
-inline const char& to_char(const char& v) { return v; }
-inline const bool& to_bool(const bool& v) { return v; }
-
-} // namespace crono
-
-#endif // _CRONO_BASE_BASE_HPP 
+#endif // _CRONO_MT_OS_MUTEX_HPP 
