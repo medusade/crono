@@ -13,63 +13,51 @@
 # or otherwise) arising in any way out of the use of this software, 
 # even if advised of the possibility of such damage.
 #
-#   File: crono.pri
+#   File: hello.pri
 #
 # Author: $author$
-#   Date: 9/21/2016
+#   Date: 9/22/2016
 ########################################################################
-CRONO_PKG = ../../../../..
-CRONO_BLD = ../..
 
-CRONO_PRJ = $${CRONO_PKG}
-CRONO_BIN = $${CRONO_BLD}/bin
-CRONO_LIB = $${CRONO_BLD}/lib
-CRONO_SRC = $${CRONO_PKG}/src
+hello_INCLUDEPATH += \
+$${crono_INCLUDEPATH} \
 
-CONFIG(debug, debug|release) {
-CRONO_CONFIG = Debug
-crono_DEFINES += DEBUG_BUILD
-} else {
-CRONO_CONFIG = Release
-crono_DEFINES += RELEASE_BUILD
-}
-crono_DEFINES += BUILD_CONFIG=$${CRONO_CONFIG}
+hello_DEFINES += \
+$${crono_DEFINES} \
 
 ########################################################################
-# patrona
-PATRONA_PKG = $${CRONO_PKG}/../patrona
-PATRONA_PRJ = $${PATRONA_PKG}
-PATRONA_SRC = $${PATRONA_PKG}/src
+hello_HEADERS += \
+$${CRONO_SRC}/crono/mt/Logger.hpp \
+$${CRONO_SRC}/crono/mt/apple/osx/Mutex.hpp \
+$${CRONO_SRC}/crono/mt/posix/Mutex.hpp \
+$${CRONO_SRC}/crono/mt/os/Mutex.hpp \
+$${CRONO_SRC}/crono/mt/Mutex.hpp \
+$${CRONO_SRC}/crono/mt/os/Os.hpp \
+$${CRONO_SRC}/crono/io/Logger.hpp \
+$${CRONO_SRC}/crono/base/Locked.hpp \
+$${CRONO_SRC}/crono/base/Created.hpp \
+$${CRONO_SRC}/crono/base/Attached.hpp \
+$${CRONO_SRC}/crono/base/Base.hpp \
 
-patrona_INCLUDEPATH += \
-$${PATRONA_SRC} \
-
-patrona_DEFINES += \
-
-patrona_LIBS += \
-
-########################################################################
-# nadir
-NADIR_PKG = $${CRONO_PKG}/../nadir
-NADIR_PRJ = $${NADIR_PKG}
-NADIR_SRC = $${NADIR_PKG}/src
-
-nadir_INCLUDEPATH += \
-$${NADIR_SRC} \
-
-nadir_DEFINES += \
-
-nadir_LIBS += \
+hello_SOURCES += \
+$${CRONO_SRC}/crono/mt/Logger.cpp \
+$${CRONO_SRC}/crono/mt/os/Mutex.cpp \
+$${CRONO_SRC}/crono/mt/os/Os.cpp \
+$${CRONO_SRC}/crono/base/Locked.cpp \
+$${CRONO_SRC}/crono/base/Created.cpp \
+$${CRONO_SRC}/crono/base/Attached.cpp \
+$${CRONO_SRC}/crono/base/Base.cpp \
 
 ########################################################################
-crono_INCLUDEPATH += \
-$${CRONO_SRC} \
-$${nadir_INCLUDEPATH} \
-$${patrona_INCLUDEPATH} \
+hello_HEADERS += \
+$${CRONO_SRC}/crono/console/Main.hpp \
+$${CRONO_SRC}/crono/console/Main_main.hpp \
+$${CRONO_SRC}/crono/app/console/hello/Main.hpp \
 
-crono_DEFINES += \
+hello_SOURCES += \
+$${CRONO_SRC}/crono/app/console/hello/Main.cpp \
 
 ########################################################################
-crono_LIBS += \
--L$${CRONO_LIB}/libcrono \
--lcrono \
+hello_LIBS += \
+$${crono_LIBS} \
+

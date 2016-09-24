@@ -13,34 +13,32 @@
 # or otherwise) arising in any way out of the use of this software, 
 # even if advised of the possibility of such damage.
 #
-#   File: crono.pri
+#   File: hello.pro
 #
 # Author: $author$
-#   Date: 9/21/2016
+#   Date: 9/22/2016
 ########################################################################
+include(../../../../QtCreator/crono.pri)
+include(../../crono.pri)
+include(../../../../QtCreator/app/hello/hello.pri)
 
-CRONO_OS = macosx
-
-########################################################################
-# nadir
-NADIR_BLD = ../$${NADIR_PKG}/build/$${CRONO_OS}/QtCreator/$${CRONO_CONFIG}
-NADIR_LIB = $${NADIR_BLD}/lib
-
-nadir_INCLUDEPATH += \
-
-nadir_DEFINES += \
-
-nadir_LIBS += \
--L$${NADIR_LIB}/libnadir \
--lnadir \
+TARGET = crono-hello
 
 ########################################################################
-# crono
-crono_INCLUDEPATH += \
+INCLUDEPATH += \
+$${hello_INCLUDEPATH} \
 
-crono_DEFINES += \
+DEFINES += \
+$${hello_DEFINES} \
 
-crono_LIBS += \
-$${nadir_LIBS} \
--lpthread \
--ldl \
+########################################################################
+HEADERS += \
+$${hello_HEADERS} \
+
+SOURCES += \
+$${hello_SOURCES} \
+
+########################################################################
+LIBS += \
+$${hello_LIBS} \
+
