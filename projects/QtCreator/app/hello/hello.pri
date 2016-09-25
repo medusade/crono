@@ -27,6 +27,17 @@ $${crono_DEFINES} \
 
 ########################################################################
 hello_HEADERS += \
+$${PATRONA_SRC}/patrona/cpp/xos/console/Main.hpp \
+$${PATRONA_SRC}/patrona/cpp/xos/base/Locked.hpp \
+$${PATRONA_SRC}/patrona/cpp/xos/base/Acquired.hpp \
+$${PATRONA_SRC}/patrona/cpp/xos/base/Joined.hpp \
+$${PATRONA_SRC}/patrona/cpp/xos/base/Waited.hpp \
+$${PATRONA_SRC}/patrona/cpp/xos/base/Created.hpp \
+$${PATRONA_SRC}/patrona/cpp/xos/base/Attached.hpp \
+
+
+########################################################################
+hello_HEADERS += \
 $${CRONO_SRC}/crono/mt/Logger.hpp \
 $${CRONO_SRC}/crono/mt/apple/osx/Mutex.hpp \
 $${CRONO_SRC}/crono/mt/posix/Mutex.hpp \
@@ -35,6 +46,9 @@ $${CRONO_SRC}/crono/mt/Mutex.hpp \
 $${CRONO_SRC}/crono/mt/os/Os.hpp \
 $${CRONO_SRC}/crono/io/Logger.hpp \
 $${CRONO_SRC}/crono/base/Locked.hpp \
+$${CRONO_SRC}/crono/base/Acquired.hpp \
+$${CRONO_SRC}/crono/base/Joined.hpp \
+$${CRONO_SRC}/crono/base/Waited.hpp \
 $${CRONO_SRC}/crono/base/Created.hpp \
 $${CRONO_SRC}/crono/base/Attached.hpp \
 $${CRONO_SRC}/crono/base/Base.hpp \
@@ -43,9 +57,6 @@ hello_SOURCES += \
 $${CRONO_SRC}/crono/mt/Logger.cpp \
 $${CRONO_SRC}/crono/mt/os/Mutex.cpp \
 $${CRONO_SRC}/crono/mt/os/Os.cpp \
-$${CRONO_SRC}/crono/base/Locked.cpp \
-$${CRONO_SRC}/crono/base/Created.cpp \
-$${CRONO_SRC}/crono/base/Attached.cpp \
 $${CRONO_SRC}/crono/base/Base.cpp \
 
 ########################################################################
