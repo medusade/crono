@@ -21,18 +21,20 @@
 #ifndef _CRONO_IO_LOGGER_HPP
 #define _CRONO_IO_LOGGER_HPP
 
-#include "crono/base/Locked.hpp"
+#include "patrona/cpp/xos/base/Locked.hpp"
+#include "crono/base/Base.hpp"
 #include <iostream>
 
 namespace crono {
 namespace io {
 
+typedef ::patrona::Locked LoggerImplements;
 ///////////////////////////////////////////////////////////////////////
 ///  Class: Logger
 ///////////////////////////////////////////////////////////////////////
-class _EXPORT_CLASS Logger: virtual public Locked {
+class _EXPORT_CLASS Logger: virtual public LoggerImplements {
 public:
-    typedef Locked Implements;
+    typedef LoggerImplements Implements;
 
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
@@ -136,7 +138,7 @@ public:
     ///////////////////////////////////////////////////////////////////////
     virtual void Log
     (const Level& _level, const Location& _location, const Message& _message) {
-        Locker lock(*this);
+        ::patrona::Locker lock(*this);
         if ((this->IsEnabledFor(_level))) {
             Log(_location);
             Log(_message.c_str());
@@ -145,7 +147,7 @@ public:
     }
     virtual void Log
     (const Level& _level, const Function& _function, const Message& _message) {
-        Locker lock(*this);
+        ::patrona::Locker lock(*this);
         if ((this->IsEnabledFor(_level))) {
             Log(_function);
             Log(_message.c_str());
@@ -154,7 +156,7 @@ public:
     }
     virtual void Log
     (const Level& _level, const Message& _message) {
-        Locker lock(*this);
+        ::patrona::Locker lock(*this);
         if ((this->IsEnabledFor(_level))) {
             Log(_message.c_str());
             LogLn();

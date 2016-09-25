@@ -21,13 +21,13 @@
 #ifndef _CRONO_CONSOLE_MAIN_HPP
 #define _CRONO_CONSOLE_MAIN_HPP
 
-#include "crono/base/Base.hpp"
-#include <iostream>
+#include "crono/io/Logger.hpp"
+#include "patrona/cpp/xos/console/Main.hpp"
 
 namespace crono {
 namespace console {
 
-#include "patrona/cpp/xos/console/Main.hpp"
+typedef ::patrona::console::Main Main;
 
 } // namespace console
 } // namespace crono 

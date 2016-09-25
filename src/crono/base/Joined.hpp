@@ -13,35 +13,36 @@
 /// or otherwise) arising in any way out of the use of this software, 
 /// even if advised of the possibility of such damage.
 ///
-///   File: Locked.hpp
+///   File: Joined.hpp
 ///
 /// Author: $author$
-///   Date: 9/21/2016
+///   Date: 9/24/2016
 ///////////////////////////////////////////////////////////////////////
-#ifndef _CRONO_BASE_LOCKED_HPP
-#define _CRONO_BASE_LOCKED_HPP
+#ifndef _CRONO_BASE_JOINED_HPP
+#define _CRONO_BASE_JOINED_HPP
 
-#include "patrona/cpp/xos/base/Locked.hpp"
+#include "patrona/cpp/xos/base/Joined.hpp"
 
 namespace crono {
 
-typedef ::patrona::LockStatus LockStatus;
-static const LockStatus LockSuccess = ::patrona::LockSuccess;
-static const LockStatus LockFailed = ::patrona::LockFailed;
-static const LockStatus LockBusy = ::patrona::LockBusy;
-static const LockStatus LockInterrupted = ::patrona::LockInterrupted;
-static const LockStatus LockInvalid = ::patrona::LockInvalid;
-static const LockStatus UnlockSuccess = ::patrona::UnlockSuccess;
-static const LockStatus UnlockFailed = ::patrona::UnlockFailed;
-static const LockStatus UnlockBusy = ::patrona::UnlockBusy;
-static const LockStatus UnlockInterrupted = ::patrona::UnlockInterrupted;
-static const LockStatus UnlockInvalid = ::patrona::UnlockInvalid;
+typedef ::patrona::JoinStatus JoinStatus;
+static const JoinStatus JoinSuccess = ::patrona::JoinSuccess;
+static const JoinStatus JoinFailed = ::patrona::JoinFailed;
+static const JoinStatus JoinBusy = ::patrona::JoinBusy;
+static const JoinStatus JoinInterrupted = ::patrona::JoinInterrupted;
+static const JoinStatus JoinInvalid = ::patrona::JoinInvalid;
+static const JoinStatus ForkSuccess = ::patrona::ForkSuccess;
+static const JoinStatus ForkFailed = ::patrona::ForkFailed;
+static const JoinStatus ForkBusy = ::patrona::ForkBusy;
+static const JoinStatus ForkInterrupted = ::patrona::ForkInterrupted;
+static const JoinStatus ForkInvalid = ::patrona::ForkInvalid;
 
-typedef ::patrona::LockException LockException;
+typedef ::patrona::JoinException JoinException;
 
-typedef ::patrona::Locked Locked;
-typedef ::patrona::Locker Locker;
+typedef ::patrona::Joined Joined;
+typedef ::patrona::Joiner Joiner;
+typedef ::patrona::Forker Forker;
 
 } // namespace crono
 
-#endif // _CRONO_BASE_LOCKED_HPP 
+#endif // _CRONO_BASE_JOINED_HPP

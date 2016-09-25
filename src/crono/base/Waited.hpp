@@ -13,35 +13,36 @@
 /// or otherwise) arising in any way out of the use of this software, 
 /// even if advised of the possibility of such damage.
 ///
-///   File: Locked.hpp
+///   File: Waited.hpp
 ///
 /// Author: $author$
-///   Date: 9/21/2016
+///   Date: 9/24/2016
 ///////////////////////////////////////////////////////////////////////
-#ifndef _CRONO_BASE_LOCKED_HPP
-#define _CRONO_BASE_LOCKED_HPP
+#ifndef _CRONO_BASE_WAITED_HPP
+#define _CRONO_BASE_WAITED_HPP
 
-#include "patrona/cpp/xos/base/Locked.hpp"
+#include "patrona/cpp/xos/base/Waited.hpp"
 
 namespace crono {
 
-typedef ::patrona::LockStatus LockStatus;
-static const LockStatus LockSuccess = ::patrona::LockSuccess;
-static const LockStatus LockFailed = ::patrona::LockFailed;
-static const LockStatus LockBusy = ::patrona::LockBusy;
-static const LockStatus LockInterrupted = ::patrona::LockInterrupted;
-static const LockStatus LockInvalid = ::patrona::LockInvalid;
-static const LockStatus UnlockSuccess = ::patrona::UnlockSuccess;
-static const LockStatus UnlockFailed = ::patrona::UnlockFailed;
-static const LockStatus UnlockBusy = ::patrona::UnlockBusy;
-static const LockStatus UnlockInterrupted = ::patrona::UnlockInterrupted;
-static const LockStatus UnlockInvalid = ::patrona::UnlockInvalid;
+typedef ::patrona::WaitStatus WaitStatus;
+static const WaitStatus WaitSuccess = ::patrona::WaitSuccess;
+static const WaitStatus WaitFailed = ::patrona::WaitFailed;
+static const WaitStatus WaitBusy = ::patrona::WaitBusy;
+static const WaitStatus WaitInterrupted = ::patrona::WaitInterrupted;
+static const WaitStatus WaitInvalid = ::patrona::WaitInvalid;
+static const WaitStatus ContinueSuccess = ::patrona::ContinueSuccess;
+static const WaitStatus ContinueFailed = ::patrona::ContinueFailed;
+static const WaitStatus ContinueBusy = ::patrona::ContinueBusy;
+static const WaitStatus ContinueInterrupted = ::patrona::ContinueInterrupted;
+static const WaitStatus ContinueInvalid = ::patrona::ContinueInvalid;
 
-typedef ::patrona::LockException LockException;
+typedef ::patrona::WaitException WaitException;
 
-typedef ::patrona::Locked Locked;
-typedef ::patrona::Locker Locker;
+typedef ::patrona::Waited Waited;
+typedef ::patrona::Waiter Waiter;
+typedef ::patrona::Continuer Continuer;
 
 } // namespace crono
 
-#endif // _CRONO_BASE_LOCKED_HPP 
+#endif // _CRONO_BASE_WAITED_HPP

@@ -23,7 +23,6 @@
 
 #include "crono/mt/Mutex.hpp"
 #include "crono/base/Created.hpp"
-#include "crono/base/Attached.hpp"
 
 #include <pthread.h>
 #include <time.h>
@@ -40,10 +39,10 @@ namespace mt {
 namespace posix {
 
 typedef pthread_mutex_t* MutexTAttachedT;
-typedef CreatorT<mt::Mutex> MutexTAttacherImplements;
-typedef AttacherT<MutexTAttachedT, int, 0, MutexTAttacherImplements> MutexTAttacher;
-typedef AttachedT<MutexTAttachedT, int, 0, MutexTAttacher> MutexTAttached;
-typedef CreatedT<MutexTAttachedT, int, 0, MutexTAttacher, MutexTAttached> MutexTCreated;
+typedef ::patrona::CreatorT<mt::Mutex> MutexTAttacherImplements;
+typedef ::patrona::AttacherT<MutexTAttachedT, int, 0, MutexTAttacherImplements> MutexTAttacher;
+typedef ::patrona::AttachedT<MutexTAttachedT, int, 0, MutexTAttacher> MutexTAttached;
+typedef ::patrona::CreatedT<MutexTAttachedT, int, 0, MutexTAttacher, MutexTAttached> MutexTCreated;
 typedef MutexTAttacher MutexTImplements;
 typedef MutexTCreated MutexTExtends;
 ///////////////////////////////////////////////////////////////////////

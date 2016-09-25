@@ -21,12 +21,13 @@
 #ifndef _CRONO_MT_MUTEX_HPP
 #define _CRONO_MT_MUTEX_HPP
 
+#include "crono/base/Base.hpp"
 #include "crono/base/Locked.hpp"
 
 namespace crono {
 namespace mt {
 
-typedef Locked MutexTImplements;
+typedef ::patrona::Locked MutexTImplements;
 ///////////////////////////////////////////////////////////////////////
 ///  Class: MutexT
 ///////////////////////////////////////////////////////////////////////
