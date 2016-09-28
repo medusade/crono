@@ -184,16 +184,16 @@ public:
         }
         return LockFailed;
     }
-    virtual LockStatus TimedLock(mseconds_t waitMilliseconds) {
-        if (0 < (waitMilliseconds)) {
+    virtual LockStatus TimedLock(mseconds_t milliseconds) {
+        if (0 < (milliseconds)) {
 #if defined(PTHREAD_MUTEX_HAS_TIMEDLOCK)
             pthread_mutex_t* mutex = 0;
             if ((mutex = this->m_attachedTo)) {
                 int err = 0;
                 struct timespec untilTime;
                 clock_gettime(CLOCK_REALTIME, &untilTime);
-                untilTime.tv_sec +=  waitMilliseconds/1000;
-                untilTime.tv_nsec +=  (waitMilliseconds%1000)*1000;
+                untilTime.tv_sec +=  milliseconds/1000;
+                untilTime.tv_nsec +=  (milliseconds%1000)*1000;
                 if ((err = pthread_mutex_timedlock(mutex, &untilTime))) {
                     switch(err) {
                     case ETIMEDOUT:
@@ -211,7 +211,7 @@ public:
             return LockInvalid;
 #endif // defined(PTHREAD_MUTEX_HAS_TIMEDLOCK)
         } else {
-            if (0 > (waitMilliseconds)) {
+            if (0 > (milliseconds)) {
                 return UntimedLock();
             } else {
                 return TryLock();
