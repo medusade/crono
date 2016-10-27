@@ -23,6 +23,7 @@
 
 #include "crono/mt/Mutex.hpp"
 #include "crono/base/Created.hpp"
+#include "crono/io/Logger.hpp"
 
 #include <pthread.h>
 #include <time.h>
@@ -120,9 +121,17 @@ public:
     virtual pthread_mutex_t* CreateDetached
     (pthread_mutexattr_t& mutexattr, pthread_mutex_t& mutex) const {
         int err = 0;
+
+        CRONO_CERR_LOG_DEBUG("pthread_mutexattr_init(&mutexattr)...");
         if (!(err = pthread_mutexattr_init(&mutexattr))) {
+
+            CRONO_CERR_LOG_DEBUG("pthread_mutex_init(&mutex, &mutexattr)...");
             if (!(err = pthread_mutex_init(&mutex, &mutexattr))) {
+
+                CRONO_CERR_LOG_DEBUG("pthread_mutexattr_destroy(&mutexattr)...");
                 if ((err = pthread_mutexattr_destroy(&mutexattr))) {
+
+                    CRONO_CERR_LOG_DEBUG("pthread_mutex_destroy(mutex)...");
                     if ((err = pthread_mutex_destroy(&mutex))) {
                     }
                     return 0;
@@ -137,6 +146,8 @@ public:
     virtual bool DestroyDetached(pthread_mutex_t* mutex) const {
         if ((mutex)) {
             int err = 0;
+
+            CRONO_CERR_LOG_DEBUG("pthread_mutex_destroy(mutex)...");
             if (!(err = pthread_mutex_destroy(mutex))) {
                 return true;
             }
@@ -146,12 +157,8 @@ public:
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
     virtual bool Lock() {
-        pthread_mutex_t* mutex = 0;
-        int err = 0;
-        if ((mutex = this->m_attachedTo)) {
-            if (!(err = pthread_mutex_lock(mutex))) {
-                return true;
-            }
+        if (LockSuccess == (UntimedLock())) {
+            return true;
         }
         return false;
     }
@@ -159,6 +166,8 @@ public:
         pthread_mutex_t* mutex = 0;
         int err = 0;
         if ((mutex = this->m_attachedTo)) {
+
+            CRONO_CERR_LOG_DEBUG("pthread_mutex_unlock(mutex)...");
             if (!(err = pthread_mutex_unlock(mutex))) {
                 return true;
             }
@@ -169,13 +178,18 @@ public:
         pthread_mutex_t* mutex = 0;
         if ((mutex = this->m_attachedTo)) {
             int err = 0;
+
+            CRONO_CERR_LOG_TRACE("pthread_mutex_trylock(mutex)...");
             if ((err =  pthread_mutex_trylock(mutex))) {
                 switch(err) {
                 case ETIMEDOUT:
+                    CRONO_CERR_LOG_TRACE("...ETIMEDOUT err = " << err << " on pthread_mutex_trylock(mutex)");
                     return LockBusy;
                 case EINTR:
+                    CRONO_CERR_LOG_ERROR("...EINTR err = " << err << " on pthread_mutex_trylock(mutex)");
                     return LockInterrupted;
                 default:
+                    CRONO_CERR_LOG_ERROR("...failed err = " << err << " on pthread_mutex_trylock(mutex)");
                     return LockFailed;
                 }
             } else {
@@ -194,13 +208,18 @@ public:
                 clock_gettime(CLOCK_REALTIME, &untilTime);
                 untilTime.tv_sec +=  milliseconds/1000;
                 untilTime.tv_nsec +=  (milliseconds%1000)*1000;
+
+                CRONO_CERR_LOG_TRACE("pthread_mutex_timedlock(mutex, &untilTime)...");
                 if ((err = pthread_mutex_timedlock(mutex, &untilTime))) {
                     switch(err) {
                     case ETIMEDOUT:
+                        CRONO_CERR_LOG_TRACE("...ETIMEDOUT err = " << err << " on pthread_mutex_timedlock(mutex, &untilTime)");
                         return LockBusy;
                     case EINTR:
+                        CRONO_CERR_LOG_ERROR("...EINTR err = " << err << " on pthread_mutex_timedlock(mutex, &untilTime)");
                         return LockInterrupted;
                     default:
+                        CRONO_CERR_LOG_ERROR("...failed err = " << err << " on pthread_mutex_timedlock(mutex, &untilTime)");
                         return LockFailed;
                     }
                 } else {
@@ -223,13 +242,18 @@ public:
         pthread_mutex_t* mutex = 0;
         if ((mutex = this->m_attachedTo)) {
             int err = 0;
+
+            CRONO_CERR_LOG_DEBUG("pthread_mutex_lock(mutex)...");
             if ((err =  pthread_mutex_lock(mutex))) {
                 switch(err) {
                 case ETIMEDOUT:
+                    CRONO_CERR_LOG_ERROR("...ETIMEDOUT err = " << err << " on pthread_mutex_lock(mutex)");
                     return LockBusy;
                 case EINTR:
+                    CRONO_CERR_LOG_ERROR("...EINTR err = " << err << " on pthread_mutex_lock(mutex)");
                     return LockInterrupted;
                 default:
+                    CRONO_CERR_LOG_ERROR("...failed err = " << err << " on pthread_mutex_lock(mutex)");
                     return LockFailed;
                 }
             } else {

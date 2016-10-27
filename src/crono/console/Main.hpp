@@ -23,6 +23,7 @@
 
 #include "crono/io/Logger.hpp"
 #include "patrona/cpp/xos/console/Main.hpp"
+#include <getopt.h>
 
 namespace crono {
 namespace console {

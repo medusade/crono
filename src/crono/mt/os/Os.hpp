@@ -25,7 +25,7 @@
 
 namespace crono {
 namespace mt {
-namespace microsoft { namespace windows { } }
+namespace microsoft { namespace windows { namespace crt { } } }
 namespace apple { namespace osx { } }
 namespace posix { }
 namespace os {

@@ -33,7 +33,7 @@ int main(int argc, char** argv, char** env) {
 
     CRONO_LOGGER_INIT();
 
-    CRONO_SET_LOGGING_LEVEL(CRONO_LOGGING_LEVELS_ALL);
+    CRONO_SET_LOGGING_LEVEL(CRONO_LOGGING_LEVELS_DEFAULT);
 
     ::crono::console::Main::TheMain(argc, argv, env);
 

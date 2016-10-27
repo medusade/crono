@@ -24,6 +24,24 @@
 #include "nadir/base/string.hpp"
 #include "nadir/base/base.hpp"
 
+#if defined(_MSC_VER)
+#if !defined(DEBUG_BUILD) && !defined(RELEASE_BUILD)
+#if defined(_DEBUG)
+#define DEBUG_BUILD
+#else // defined(_DEBUG)
+#define RELEASE_BUILD
+#endif // defined(_DEBUG)
+#endif // !defined(DEBUG_BUILD) && !defined(RELEASE_BUILD)
+
+#if !defined(CRONO_CONFIG)
+#if defined(DEBUG_BUILD)
+#define CRONO_CONFIG Debug
+#else // defined(DEBUG_BUILD)
+#define CRONO_CONFIG Release
+#endif // defined(DEBUG_BUILD)
+#endif // !defined(CRONO_CONFIG)
+#endif // defined(_MSC_VER)
+
 namespace crono {
 
 typedef ::nadir::implement_base ImplementBase;

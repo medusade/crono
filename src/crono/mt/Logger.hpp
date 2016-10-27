@@ -39,9 +39,15 @@ class _EXPORT_CLASS LoggerT: virtual public TImplements, public TExtends {
 public:
     typedef TImplements Implements;
     typedef TExtends Extends;
+    typedef io::Logger::Level Level;
+    static const Level LevelNone = io::Logger::LevelNone;
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
-    LoggerT(Mutex& mutex): m_mutex(mutex) {
+    LoggerT(Mutex& mutex, Level level)
+    : m_mutex(mutex), m_level(level) {
+    }
+    LoggerT(Mutex& mutex)
+    : m_mutex(mutex), m_level(LevelNone) {
     }
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
@@ -57,8 +63,23 @@ public:
     }
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
+    virtual void EnableFor(const Level& _level) {
+        m_level = _level;
+    }
+    virtual Level EnabledFor() const { 
+        return m_level; 
+    }
+    virtual bool IsEnabledFor(const Level& _level) const { 
+        if ((_level) && (_level == (_level & m_level))) {
+            return true;
+        }
+        return false; 
+    }
+    ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
 protected:
     Mutex& m_mutex;
+    Level m_level;
 };
 typedef LoggerT<> Logger;
 

@@ -20,6 +20,17 @@
 ///////////////////////////////////////////////////////////////////////
 #include "crono/mt/os/Mutex.hpp"
 
+#if defined(WINDOWS)
+// Windows
+#include "crono/mt/microsoft/windows/Mutex.cpp"
+#elif defined(MACOSX)
+// MacOSX
+#include "crono/mt/apple/osx/Mutex.cpp"
+#else // defined(WINDOWS)
+// Unix
+#include "crono/mt/posix/Mutex.cpp"
+#endif // defined(WINDOWS)
+
 namespace crono {
 namespace mt {
 namespace os {

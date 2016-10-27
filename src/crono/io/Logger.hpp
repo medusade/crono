@@ -208,8 +208,16 @@ protected:
     }
 };
 
+} // namespace io
+} // namespace crono 
+
 ///////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////
+#if defined(_MSC_VER)
+#define __CRONO_LOGGER_FUNCTION__ __FUNCTION__
+#else // defined(_MSC_VER)
+#endif // defined(_MSC_VER)
+
 #if !defined(__CRONO_LOGGER_FUNCTION__)
 #define __CRONO_LOGGER_FUNCTION__ __FUNCTION__
 #endif // !defined(__CRONO_LOGGER_FUNCTION__)
@@ -223,6 +231,38 @@ protected:
 #define CRONO_LOGGER_LOCATION \
     ::crono::io::Logger::Location(__CRONO_LOGGER_FUNCTION__, __FILE__, __LINE__)
 #endif // !defined(CRONO_LOGGER_LOCATION)
+
+///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
+#if defined(TRACE_BUILD)
+#define CRONO_CERR_LOG_TRACE(message_) CRONO_CERR_LOG(message_)
+#define CRONO_STDERR_LOG_TRACE(message_) CRONO_STDERR_LOG(message_)
+#else // defined(TRACE_BUILD)
+#define CRONO_CERR_LOG_TRACE(message_)
+#define CRONO_STDERR_LOG_TRACE(message_)
+#endif // defined(TRACE_BUILD)
+
+#if defined(DEBUG_BUILD)
+#define CRONO_CERR_LOG_DEBUG(message_) CRONO_CERR_LOG(message_)
+#define CRONO_STDERR_LOG_DEBUG(message_) CRONO_STDERR_LOG(message_)
+#else // defined(DEBUG_BUILD)
+#define CRONO_CERR_LOG_DEBUG(message_)
+#define CRONO_STDERR_LOG_DEBUG(message_)
+#endif // defined(DEBUG_BUILD)
+
+#define CRONO_CERR_LOG_ERROR(message_) CRONO_CERR_LOG(message_)
+#define CRONO_STDERR_LOG_ERROR(message_) CRONO_STDERR_LOG(message_)
+
+#define CRONO_CERR_LOG(message_) CRONO_COSTREAM_LOG(::std::cerr, message_)
+#define CRONO_COSTREAM_LOG(ostream_, message_) \
+{ ::crono::io::Logger::Message message; \
+  ostream_ << CRONO_LOGGER_FUNCTION << ": " << message << message_ << "\n"; }
+
+#define CRONO_STDERR_LOG(message_) CRONO_STDSTREAM_LOG(stderr, message_)
+#define CRONO_STDSTREAM_LOG(stream_, message_) \
+{ ::crono::io::Logger::Function function = CRONO_LOGGER_FUNCTION; \
+  ::crono::io::Logger::Message message; message << message_; \
+  fprintf(stream_, "%s: %s\n", function.chars(), message.chars()); }
 
 ///////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////
@@ -270,6 +310,18 @@ if ((logger)?(logger->IsEnabledFor(level_)):(false)) {\
 #define CRONO_LOGGING_LEVELS_DEBUG ::crono::io::Logger::LevelsDebug
 #define CRONO_LOGGING_LEVELS_TRACE ::crono::io::Logger::LevelsTrace
 
+#if !defined(CRONO_LOGGING_LEVELS_DEFAULT)
+#if defined(TRACE_BUILD)
+#define CRONO_LOGGING_LEVELS_DEFAULT CRONO_LOGGING_LEVELS_TRACE
+#else // defined(TRACE_BUILD)
+#if defined(DEBUG_BUILD)
+#define CRONO_LOGGING_LEVELS_DEFAULT CRONO_LOGGING_LEVELS_DEBUG
+#else // defined(DEBUG_BUILD)
+#define CRONO_LOGGING_LEVELS_DEFAULT CRONO_LOGGING_LEVELS_ERROR
+#endif // defined(DEBUG_BUILD)
+#endif // defined(TRACE_BUILD)
+#endif // !defined(CRONO_LOGGING_LEVELS_DEFAULT)
+
 #if !defined(CRONO_USE_LOGGER)
 #define CRONO_DEFAULT_LOGGER ::crono::io::Logger::GetDefault()
 #endif // !defined(CRONO_USE_LOGGER)
@@ -294,8 +346,5 @@ if ((logger)?(logger->IsEnabledFor(level_)):(false)) {\
 #define CRONO_LOG_INFO(message) CRONO_LOG(CRONO_DEFAULT_LOGGER, ::crono::io::Logger::LevelInfo, message)
 #define CRONO_LOG_DEBUG(message) CRONO_LOG(CRONO_DEFAULT_LOGGER, ::crono::io::Logger::LevelDebug, message)
 #define CRONO_LOG_TRACE(message) CRONO_LOG(CRONO_DEFAULT_LOGGER, ::crono::io::Logger::LevelTrace, message)
-
-} // namespace io
-} // namespace crono 
 
 #endif // _CRONO_IO_LOGGER_HPP 
