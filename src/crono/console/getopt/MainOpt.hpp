@@ -13,25 +13,35 @@
 /// or otherwise) arising in any way out of the use of this software, 
 /// even if advised of the possibility of such damage.
 ///
-///   File: Main.hpp
+///   File: MainOpt.hpp
 ///
 /// Author: $author$
-///   Date: 9/23/2016
+///   Date: 11/6/2016
 ///////////////////////////////////////////////////////////////////////
-#ifndef _CRONO_CONSOLE_MAIN_HPP
-#define _CRONO_CONSOLE_MAIN_HPP
+#ifndef _CRONO_CONSOLE_GETOPT_MAINOPT_HPP
+#define _CRONO_CONSOLE_GETOPT_MAINOPT_HPP
 
-#include "crono/io/Logger.hpp"
-#include "patrona/cpp/xos/console/Main.hpp"
+#include "patrona/cpp/xos/console/getopt/MainOpt.hpp"
+
+///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
+#define CRONO_MAIN_OPTIONS_CHARS \
+    MAIN_OPTIONS_CHARS
+
+#define CRONO_MAIN_OPTIONS_OPTIONS \
+    MAIN_OPTIONS_OPTIONS
+
+///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
 
 namespace crono {
 namespace console {
+namespace getopt {
 
-typedef ::patrona::console::Main Main;
-
-} // namespace console
+} // namespace getopt 
+} // namespace console 
 } // namespace crono 
 
-#endif // _CRONO_CONSOLE_MAIN_HPP 
+#endif // _CRONO_CONSOLE_GETOPT_MAINOPT_HPP 
         
 

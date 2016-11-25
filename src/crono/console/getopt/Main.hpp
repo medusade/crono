@@ -16,22 +16,22 @@
 ///   File: Main.hpp
 ///
 /// Author: $author$
-///   Date: 9/23/2016
+///   Date: 11/6/2016
 ///////////////////////////////////////////////////////////////////////
-#ifndef _CRONO_CONSOLE_MAIN_HPP
-#define _CRONO_CONSOLE_MAIN_HPP
+#ifndef _CRONO_CONSOLE_GETOPT_MAIN_HPP
+#define _CRONO_CONSOLE_GETOPT_MAIN_HPP
 
-#include "crono/io/Logger.hpp"
-#include "patrona/cpp/xos/console/Main.hpp"
+#include "crono/console/getopt/MainOpt.hpp"
+#include "patrona/cpp/xos/console/getopt/Main.hpp"
 
 namespace crono {
 namespace console {
+namespace getopt {
 
-typedef ::patrona::console::Main Main;
+typedef ::patrona::console::getopt::Main Main;
 
-} // namespace console
+} // namespace getopt
+} // namespace console 
 } // namespace crono 
 
-#endif // _CRONO_CONSOLE_MAIN_HPP 
-        
-
+#endif // _CRONO_CONSOLE_GETOPT_MAIN_HPP 
