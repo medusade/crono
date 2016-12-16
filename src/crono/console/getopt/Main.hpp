@@ -28,6 +28,7 @@ namespace crono {
 namespace console {
 namespace getopt {
 
+typedef ::patrona::console::getopt::MainImplements MainImplements;
 typedef ::patrona::console::getopt::Main Main;
 
 } // namespace getopt
