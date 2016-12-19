@@ -118,7 +118,7 @@ public:
         Message& operator << (const char* chars) { append(chars); return *this; }
         Message& operator << (const wchar_t* chars) { append(chars); return *this; }
         Message& operator << (int i) {
-            String s(to_signed(i));
+            String s(crono::to_signed(i));
             append(s.c_str());
             return *this;
         }
