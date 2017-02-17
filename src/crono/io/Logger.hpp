@@ -23,8 +23,13 @@
 
 #include "patrona/cpp/xos/base/Locked.hpp"
 #include "crono/base/Base.hpp"
+#if !defined(USE_NADIR_BASE)
 #include <iostream>
+#else // !defined(USE_NADIR_BASE)
+#include "nadir/io/logger.hpp"
+#endif // !defined(USE_NADIR_BASE)
 
+#if !defined(USE_NADIR_BASE)
 namespace crono {
 namespace io {
 
@@ -210,7 +215,10 @@ protected:
 
 } // namespace io
 } // namespace crono 
+#else // !defined(USE_NADIR_BASE)
+#endif // !defined(USE_NADIR_BASE)
 
+#if !defined(USE_NADIR_BASE)
 ///////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////
 #if defined(_MSC_VER)
@@ -346,5 +354,13 @@ if ((logger)?(logger->IsEnabledFor(level_)):(false)) {\
 #define CRONO_LOG_INFO(message) CRONO_LOG(CRONO_DEFAULT_LOGGER, ::crono::io::Logger::LevelInfo, message)
 #define CRONO_LOG_DEBUG(message) CRONO_LOG(CRONO_DEFAULT_LOGGER, ::crono::io::Logger::LevelDebug, message)
 #define CRONO_LOG_TRACE(message) CRONO_LOG(CRONO_DEFAULT_LOGGER, ::crono::io::Logger::LevelTrace, message)
+#else // !defined(USE_NADIR_BASE)
+#define CRONO_LOG_FATAL LOG_FATAL
+#define CRONO_LOG_ERROR LOG_ERROR
+#define CRONO_LOG_WARN  LOG_WARN
+#define CRONO_LOG_INFO  LOG_INFO
+#define CRONO_LOG_DEBUG LOG_DEBUG
+#define CRONO_LOG_TRACE LOG_TRACE
+#endif // !defined(USE_NADIR_BASE)
 
 #endif // _CRONO_IO_LOGGER_HPP 
