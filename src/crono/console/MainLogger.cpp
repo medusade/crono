@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////
-/// Copyright (c) 1988-2016 $organization$
+/// Copyright (c) 1988-2017 $organization$
 ///
 /// This software is provided by the author and contributors ``as is'' 
 /// and any express or implied warranties, including, but not limited to, 
@@ -13,46 +13,19 @@
 /// or otherwise) arising in any way out of the use of this software, 
 /// even if advised of the possibility of such damage.
 ///
-///   File: Main.hpp
+///   File: MainLogger.cpp
 ///
 /// Author: $author$
-///   Date: 11/6/2016
+///   Date: 2/19/2017
 ///////////////////////////////////////////////////////////////////////
-#ifndef _CRONO_CONSOLE_GETOPT_MAIN_HPP
-#define _CRONO_CONSOLE_GETOPT_MAIN_HPP
-
-#include "crono/console/getopt/MainOpt.hpp"
-#include "patrona/cpp/xos/console/getopt/Main.hpp"
-#include "crono/io/Logger.hpp"
+#include "crono/console/MainLogger.hpp"
 
 namespace crono {
 namespace console {
-namespace getopt {
 
-typedef ::patrona::console::getopt::MainImplements MainImplements;
-typedef ::patrona::console::getopt::Main MainExtends;
 ///////////////////////////////////////////////////////////////////////
-///  Class: Main
+///  Class: MainLoggerT
 ///////////////////////////////////////////////////////////////////////
-class _EXPORT_CLASS Main: virtual public MainImplements, public MainExtends {
-public:
-    typedef MainImplements Implements;
-    typedef MainExtends Extends;
 
-    ///////////////////////////////////////////////////////////////////////
-    ///////////////////////////////////////////////////////////////////////
-    Main() {
-    }
-    virtual ~Main() {
-    }
-
-#include "crono/console/getopt/MainOpt.cpp"
-    ///////////////////////////////////////////////////////////////////////
-    ///////////////////////////////////////////////////////////////////////
-};
-
-} // namespace getopt
 } // namespace console 
 } // namespace crono 
-
-#endif // _CRONO_CONSOLE_GETOPT_MAIN_HPP 

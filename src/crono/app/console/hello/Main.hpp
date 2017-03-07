@@ -21,7 +21,7 @@
 #ifndef _CRONO_APP_CONSOLE_HELLO_MAIN_HPP
 #define _CRONO_APP_CONSOLE_HELLO_MAIN_HPP
 
-#include "crono/console/Main.hpp"
+#include "crono/console/getopt/Main.hpp"
 #include "crono/io/Logger.hpp"
 
 namespace crono {
@@ -29,9 +29,10 @@ namespace app {
 namespace console {
 namespace hello {
 
+typedef crono::console::getopt::Main MainExtends;
 ///////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////
-class _EXPORT_CLASS Main: public crono::console::Main {
+class _EXPORT_CLASS Main: public MainExtends {
 public:
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////

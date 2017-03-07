@@ -21,8 +21,8 @@
 #ifndef _CRONO_IO_LOGGER_HPP
 #define _CRONO_IO_LOGGER_HPP
 
-#include "patrona/cpp/xos/base/Locked.hpp"
 #include "crono/base/Base.hpp"
+#include "crono/base/Locked.hpp"
 #if !defined(USE_NADIR_BASE)
 #include <iostream>
 #else // !defined(USE_NADIR_BASE)
@@ -33,7 +33,7 @@
 namespace crono {
 namespace io {
 
-typedef ::patrona::Locked LoggerImplements;
+typedef Locked LoggerImplements;
 ///////////////////////////////////////////////////////////////////////
 ///  Class: Logger
 ///////////////////////////////////////////////////////////////////////
@@ -54,8 +54,20 @@ public:
         LevelDebug = (LevelInfo << 1),
         LevelTrace = (LevelDebug << 1),
 
-        LevelAll   = ((LevelTrace << 1) - 1)
+        LevelAll   = ((LevelTrace << 1) - 1),
+
+        MessageLevelNone  = 0,
+
+        MessageLevelFatal = (LevelTrace << 1),
+        MessageLevelError = (MessageLevelFatal << 1),
+        MessageLevelWarn  = (MessageLevelError << 1),
+        MessageLevelInfo  = (MessageLevelWarn << 1),
+        MessageLevelDebug = (MessageLevelInfo << 1),
+        MessageLevelTrace = (MessageLevelDebug << 1),
+
+        MessageLevelAll   = ((LevelAll << LevelTrace))
     };
+    typedef Level Levels;
     enum {
         LevelsNone  = 0,
 
@@ -66,7 +78,18 @@ public:
         LevelsDebug = (((LevelsInfo + 1) << 1) - 1),
         LevelsTrace = (((LevelsDebug + 1) << 1) - 1),
 
-        LevelsAll   = LevelsTrace
+        LevelsAll   = LevelsTrace,
+
+        MessageLevelsNone  = 0,
+
+        MessageLevelsFatal = (((LevelsFatal) << LevelTrace)),
+        MessageLevelsError = (((LevelsError) << LevelTrace)),
+        MessageLevelsWarn  = (((LevelsWarn) << LevelTrace)),
+        MessageLevelsInfo  = (((LevelsInfo) << LevelTrace)),
+        MessageLevelsDebug = (((LevelsDebug) << LevelTrace)),
+        MessageLevelsTrace = (((LevelsTrace) << LevelTrace)),
+
+        MessageLevelsAll   = MessageLevelsTrace
     };
 
     ///////////////////////////////////////////////////////////////////////
@@ -213,6 +236,43 @@ protected:
     }
 };
 
+///////////////////////////////////////////////////////////////////////
+///  Class: LoggerExtend
+///////////////////////////////////////////////////////////////////////
+class _EXPORT_CLASS LoggerExtend: virtual public Logger, public Base {
+public:
+    typedef Logger Implements;
+    typedef Base Extends;
+    ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
+    LoggerExtend(Level level): m_level(level) {
+    }
+    LoggerExtend(const LoggerExtend& copy): m_level(copy.m_level) {
+    }
+    LoggerExtend(): m_level(LevelNone) {
+    }
+    virtual ~LoggerExtend() {
+    }
+    ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
+    virtual void EnableFor(const Level& _level) {
+        m_level = _level;
+    }
+    virtual Level EnabledFor() const {
+        return m_level;
+    }
+    virtual bool IsEnabledFor(const Level& _level) const {
+        if ((_level) && (_level == (_level & m_level))) {
+            return true;
+        }
+        return false;
+    }
+    ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
+protected:
+    Level m_level;
+};
+
 } // namespace io
 } // namespace crono 
 #else // !defined(USE_NADIR_BASE)
@@ -318,6 +378,16 @@ if ((logger)?(logger->IsEnabledFor(level_)):(false)) {\
 #define CRONO_LOGGING_LEVELS_DEBUG ::crono::io::Logger::LevelsDebug
 #define CRONO_LOGGING_LEVELS_TRACE ::crono::io::Logger::LevelsTrace
 
+#define CRONO_LOGGING_MESSAGE_LEVELS ::crono::io::Logger::MessageLevel
+#define CRONO_LOGGING_MESSAGE_LEVELS_ALL ::crono::io::Logger::MessageLevelsAll
+#define CRONO_LOGGING_MESSAGE_LEVELS_NONE ::crono::io::Logger::MessageLevelsNone
+#define CRONO_LOGGING_MESSAGE_LEVELS_FATAL ::crono::io::Logger::MessageLevelsFatal
+#define CRONO_LOGGING_MESSAGE_LEVELS_ERROR ::crono::io::Logger::MessageLevelsError
+#define CRONO_LOGGING_MESSAGE_LEVELS_WARN ::crono::io::Logger::MessageLevelsWarn
+#define CRONO_LOGGING_MESSAGE_LEVELS_INFO ::crono::io::Logger::MessageLevelsInfo
+#define CRONO_LOGGING_MESSAGE_LEVELS_DEBUG ::crono::io::Logger::MessageLevelsDebug
+#define CRONO_LOGGING_MESSAGE_LEVELS_TRACE ::crono::io::Logger::MessageLevelsTrace
+
 #if !defined(CRONO_LOGGING_LEVELS_DEFAULT)
 #if defined(TRACE_BUILD)
 #define CRONO_LOGGING_LEVELS_DEFAULT CRONO_LOGGING_LEVELS_TRACE
@@ -354,6 +424,13 @@ if ((logger)?(logger->IsEnabledFor(level_)):(false)) {\
 #define CRONO_LOG_INFO(message) CRONO_LOG(CRONO_DEFAULT_LOGGER, ::crono::io::Logger::LevelInfo, message)
 #define CRONO_LOG_DEBUG(message) CRONO_LOG(CRONO_DEFAULT_LOGGER, ::crono::io::Logger::LevelDebug, message)
 #define CRONO_LOG_TRACE(message) CRONO_LOG(CRONO_DEFAULT_LOGGER, ::crono::io::Logger::LevelTrace, message)
+
+#define CRONO_LOG_MESSAGE_FATAL(message) CRONO_LOG(CRONO_DEFAULT_LOGGER, ::crono::io::Logger::MessageLevelFatal, message)
+#define CRONO_LOG_MESSAGE_ERROR(message) CRONO_LOG(CRONO_DEFAULT_LOGGER, ::crono::io::Logger::MessageLevelError, message)
+#define CRONO_LOG_MESSAGE_WARN(message) CRONO_LOG(CRONO_DEFAULT_LOGGER, ::crono::io::Logger::MessageLevelWarn, message)
+#define CRONO_LOG_MESSAGE_INFO(message) CRONO_LOG(CRONO_DEFAULT_LOGGER, ::crono::io::Logger::MessageLevelInfo, message)
+#define CRONO_LOG_MESSAGE_DEBUG(message) CRONO_LOG(CRONO_DEFAULT_LOGGER, ::crono::io::Logger::MessageLevelDebug, message)
+#define CRONO_LOG_MESSAGE_TRACE(message) CRONO_LOG(CRONO_DEFAULT_LOGGER, ::crono::io::Logger::MessageLevelTrace, message)
 #else // !defined(USE_NADIR_BASE)
 #define CRONO_LOG_FATAL LOG_FATAL
 #define CRONO_LOG_ERROR LOG_ERROR
@@ -361,6 +438,13 @@ if ((logger)?(logger->IsEnabledFor(level_)):(false)) {\
 #define CRONO_LOG_INFO  LOG_INFO
 #define CRONO_LOG_DEBUG LOG_DEBUG
 #define CRONO_LOG_TRACE LOG_TRACE
+
+#define CRONO_LOG_MESSAGE_FATAL LOG_MESSAGE_FATAL
+#define CRONO_LOG_MESSAGE_ERROR LOG_MESSAGE_ERROR
+#define CRONO_LOG_MESSAGE_WARN  LOG_MESSAGE_WARN
+#define CRONO_LOG_MESSAGE_INFO  LOG_MESSAGE_INFO
+#define CRONO_LOG_MESSAGE_DEBUG LOG_MESSAGE_DEBUG
+#define CRONO_LOG_MESSAGE_TRACE LOG_MESSAGE_TRACE
 #endif // !defined(USE_NADIR_BASE)
 
 #endif // _CRONO_IO_LOGGER_HPP 

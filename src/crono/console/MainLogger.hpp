@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////
-/// Copyright (c) 1988-2016 $organization$
+/// Copyright (c) 1988-2017 $organization$
 ///
 /// This software is provided by the author and contributors ``as is'' 
 /// and any express or implied warranties, including, but not limited to, 
@@ -13,57 +13,58 @@
 /// or otherwise) arising in any way out of the use of this software, 
 /// even if advised of the possibility of such damage.
 ///
-///   File: Logger.hpp
+///   File: MainLogger.hpp
 ///
 /// Author: $author$
-///   Date: 9/23/2016
+///   Date: 2/19/2017
 ///////////////////////////////////////////////////////////////////////
-#ifndef _CRONO_MT_LOGGER_HPP
-#define _CRONO_MT_LOGGER_HPP
+#ifndef _CRONO_CONSOLE_MAINLOGGER_HPP
+#define _CRONO_CONSOLE_MAINLOGGER_HPP
 
+#include "crono/console/Main.hpp"
 #include "crono/io/Logger.hpp"
-#include "crono/mt/Mutex.hpp"
 
 namespace crono {
-namespace mt {
+namespace console {
 
-typedef io::Logger LoggerTImplements;
-typedef io::LoggerExtend LoggerTExtends;
+typedef io::Logger MainLoggerTImplements;
+typedef io::LoggerExtend MainLoggerTExtends;
 ///////////////////////////////////////////////////////////////////////
-///  Class: LoggerT
+///  Class: MainLoggerT
 ///////////////////////////////////////////////////////////////////////
 template
-<class TExtends = LoggerTExtends, class TImplements = LoggerTImplements>
-
-class _EXPORT_CLASS LoggerT: virtual public TImplements, public TExtends {
+<class TImplements = MainLoggerTImplements, class TExtends = MainLoggerTExtends>
+class MainLoggerT: virtual public TImplements, public TExtends {
 public:
     typedef TImplements Implements;
     typedef TExtends Extends;
     typedef typename Extends::Level Level;
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
-    LoggerT(Mutex& mutex, Level level): Extends(level), m_mutex(mutex) {
+    MainLoggerT(Main& main, Level level): Extends(level), m_main(main) {
     }
-    LoggerT(Mutex& mutex) : m_mutex(mutex) {
+    MainLoggerT(Main& main): m_main(main) {
     }
-    virtual ~LoggerT() {
+    virtual ~MainLoggerT() {
     }
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
     virtual bool Lock() {
-        return m_mutex.Lock();
+        return m_main.Lock();
     }
     virtual bool Unlock() {
-        return m_mutex.Unlock();
+        return m_main.Unlock();
     }
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
 protected:
-    Mutex& m_mutex;
+    Main& m_main;
 };
-typedef LoggerT<> Logger;
+typedef MainLoggerT<> MainLogger;
 
-} // namespace mt 
+} // namespace console 
 } // namespace crono 
 
-#endif // _CRONO_MT_LOGGER_HPP 
+#endif // _CRONO_CONSOLE_MAINLOGGER_HPP 
+        
+
