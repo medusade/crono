@@ -27,6 +27,7 @@ $${crono_DEFINES} \
 
 ########################################################################
 hello_HEADERS += \
+$${PATRONA_SRC}/patrona/cpp/xos/console/getopt/Main.hpp \
 $${PATRONA_SRC}/patrona/cpp/xos/console/Main.hpp \
 $${PATRONA_SRC}/patrona/cpp/xos/base/Locked.hpp \
 $${PATRONA_SRC}/patrona/cpp/xos/base/Acquired.hpp \
@@ -61,12 +62,15 @@ $${CRONO_SRC}/crono/base/Base.cpp \
 
 ########################################################################
 hello_HEADERS += \
+$${CRONO_SRC}/crono/console/getopt/Main.hpp \
+$${CRONO_SRC}/crono/console/MainLogger.hpp \
 $${CRONO_SRC}/crono/console/Main.hpp \
 $${CRONO_SRC}/crono/console/Main_main.hpp \
 $${CRONO_SRC}/crono/app/console/hello/Main.hpp \
 
 hello_SOURCES += \
 $${CRONO_SRC}/crono/app/console/hello/Main.cpp \
+$${CRONO_SRC}/crono/console/MainLogger.cpp \
 
 ########################################################################
 hello_LIBS += \
