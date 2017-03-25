@@ -145,7 +145,7 @@ public:
         if ((detached = this->m_attachedTo)) {
             DWORD dwMilliseconds = INFINITE;
             DWORD dwResult = 0;
-            CRONO_CERR_LOG_DEBUG("ReleaseMutex(detached)...");
+            CRONO_CERR_LOG_TRACE("ReleaseMutex(detached)...");
             if ((ReleaseMutex(detached))) {
                 return true;
             } else {
@@ -180,7 +180,7 @@ public:
                             return LockFailed;
                         }
                     } else {
-                        CRONO_CERR_LOG_DEBUG("...WaitForSingleObject(detached, dwMilliseconds)");
+                        CRONO_CERR_LOG_TRACE("...WaitForSingleObject(detached, dwMilliseconds)");
                         return LockSuccess;
                     }
                 }
@@ -192,7 +192,7 @@ public:
         if ((detached = this->m_attachedTo)) {
             DWORD dwMilliseconds = INFINITE;
             DWORD dwResult = 0;
-            CRONO_CERR_LOG_DEBUG("WaitForSingleObject(detached, dwMilliseconds)...");
+            CRONO_CERR_LOG_TRACE("WaitForSingleObject(detached, dwMilliseconds)...");
             if (WAIT_OBJECT_0 != (dwResult = WaitForSingleObject(detached, dwMilliseconds))) {
                 switch(dwResult) {
                 case WAIT_TIMEOUT:
@@ -206,7 +206,7 @@ public:
                     return LockFailed;
                 }
             } else {
-                CRONO_CERR_LOG_DEBUG("...WaitForSingleObject(detached, dwMilliseconds)");
+                CRONO_CERR_LOG_TRACE("...WaitForSingleObject(detached, dwMilliseconds)");
                 return LockSuccess;
             }
         }
