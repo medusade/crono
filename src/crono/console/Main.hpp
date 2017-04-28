@@ -23,11 +23,18 @@
 
 #include "crono/io/Logger.hpp"
 #include "patrona/cpp/xos/console/Main.hpp"
+#include "patrona/cpp/xos/console/Argv.hpp"
 
 namespace crono {
 namespace console {
 
 typedef ::patrona::console::Main Main;
+typedef ::patrona::console::InIOReader InIOReader;
+typedef ::patrona::console::OutIOWriter OutIOWriter;
+typedef ::patrona::console::IO IO;
+
+typedef ::patrona::console::Argv Argv;
+typedef ::patrona::console::ArgvWriter ArgvWriter;
 
 } // namespace console
 } // namespace crono 
