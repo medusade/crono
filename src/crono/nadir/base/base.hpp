@@ -35,6 +35,10 @@ namespace crono {
 typedef nadir::implement_base implement_base;
 typedef nadir::base base;
 
+typedef nadir::pointer_t pointer_t;
+typedef nadir::unsigned_t unsigned_t;
+typedef nadir::signed_t signed_t;
+
 typedef nadir::chars_t chars_t;
 typedef nadir::tchars_t tchars_t;
 typedef nadir::wchars_t wchars_t;
@@ -46,10 +50,6 @@ typedef nadir::wchar_array wchar_array;
 typedef nadir::char_string char_string;
 typedef nadir::tchar_string tchar_string;
 typedef nadir::wchar_string wchar_string;
-
-typedef nadir::pointer_t pointer_t;
-typedef nadir::unsigned_t unsigned_t;
-typedef nadir::signed_t signed_t;
 
 inline const pointer_t& to_pointer(const pointer_t& v) { return v; }
 inline const unsigned_t& to_unsigned(const unsigned_t& v) { return v; }
@@ -63,6 +63,8 @@ typedef nadir::chars_to_string chars_to_string;
 typedef nadir::chars_to_tstring chars_to_tstring;
 typedef nadir::chars_to_wstring chars_to_wstring;
 
+///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
 typedef nadir::locked locked;
 typedef nadir::locker locker;
 typedef nadir::lock_status lock_status;
@@ -78,6 +80,8 @@ const nadir::lock_status
     unlock_interrupted = nadir::unlock_interrupted,
     unlock_invalid     = nadir::unlock_invalid;
 
+///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
 typedef nadir::creator creator;
 typedef nadir::create_exception create_exception;
 typedef nadir::create_status create_status;
@@ -86,6 +90,20 @@ const nadir::create_status
     create_success = nadir::create_success,
     create_failed = nadir::create_failed,
     destroy_failed = nadir::destroy_failed;
+
+///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
+inline seconds_t mseconds_seconds
+(mseconds_t mseconds) { return mseconds / 1000; }
+
+inline mseconds_t mseconds_mseconds
+(mseconds_t mseconds) { return mseconds % 1000; }
+
+inline useconds_t mseconds_useconds
+(mseconds_t mseconds) { return mseconds_mseconds(mseconds) * 1000; }
+
+inline nseconds_t mseconds_nseconds
+(mseconds_t mseconds) { return mseconds_useconds(mseconds) * 1000; }
 
 } // namespace crono
 
