@@ -21,8 +21,10 @@
 #ifndef _CRONO_BASE_BASE_HPP
 #define _CRONO_BASE_BASE_HPP
 
-#include "nadir/base/string.hpp"
-#include "nadir/base/base.hpp"
+#if !defined(USE_PATRONA_BASE)
+#include "crono/base/nadir/Base.hpp"
+#else //  !defined(USE_PATRONA_BASE)
+#endif // !defined(USE_PATRONA_BASE)
 
 #if defined(_MSC_VER)
 #if !defined(DEBUG_BUILD) && !defined(RELEASE_BUILD)
@@ -32,6 +34,7 @@
 #define RELEASE_BUILD
 #endif // defined(_DEBUG)
 #endif // !defined(DEBUG_BUILD) && !defined(RELEASE_BUILD)
+#endif // defined(_MSC_VER)
 
 #if !defined(CRONO_CONFIG)
 #if defined(DEBUG_BUILD)
@@ -40,25 +43,15 @@
 #define CRONO_CONFIG Release
 #endif // defined(DEBUG_BUILD)
 #endif // !defined(CRONO_CONFIG)
-#endif // defined(_MSC_VER)
 
 namespace crono {
-
-typedef ::nadir::implement_base ImplementBase;
-typedef ::nadir::base Base;
-
-typedef ::nadir::char_string String;
-typedef ::nadir::tchar_string TString;
-typedef ::nadir::wchar_string WString;
-
-typedef ::nadir::pointer_t pointer_t;
-typedef ::nadir::unsigned_t unsigned_t;
-typedef ::nadir::signed_t signed_t;
 
 inline const pointer_t& to_pointer(const pointer_t& v) { return v; }
 inline const unsigned_t& to_unsigned(const unsigned_t& v) { return v; }
 inline const signed_t& to_signed(const signed_t& v) { return v; }
+inline const byte_t& to_byte(const byte_t& v) { return v; }
 inline const wchar_t& to_wchar(const wchar_t& v) { return v; }
+inline const tchar_t& to_tchar(const tchar_t& v) { return v; }
 inline const char& to_char(const char& v) { return v; }
 inline const bool& to_bool(const bool& v) { return v; }
 
