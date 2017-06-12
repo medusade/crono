@@ -19,11 +19,21 @@
 #   Date: 9/22/2016
 ########################################################################
 
+hello_TARGET = crono-hello
+
 hello_INCLUDEPATH += \
 $${crono_INCLUDEPATH} \
 
 hello_DEFINES += \
 $${crono_DEFINES} \
+
+########################################################################
+hello_HEADERS += \
+$${NADIR_SRC}/nadir/io/logger.hpp \
+$${NADIR_SRC}/nadir/io/logger_stdio.hpp \
+$${NADIR_SRC}/nadir/io/logger_level.hpp \
+
+hello_SOURCES += \
 
 ########################################################################
 hello_HEADERS += \
@@ -36,6 +46,13 @@ $${PATRONA_SRC}/patrona/cpp/xos/base/Waited.hpp \
 $${PATRONA_SRC}/patrona/cpp/xos/base/Created.hpp \
 $${PATRONA_SRC}/patrona/cpp/xos/base/Attached.hpp \
 
+hello_SOURCES += \
+
+########################################################################
+hello_HEADERS += \
+$${CRONO_SRC}/crono/base/nadir/Base.hpp \
+
+hello_SOURCES += \
 
 ########################################################################
 hello_HEADERS += \
@@ -46,6 +63,9 @@ $${CRONO_SRC}/crono/mt/os/Mutex.hpp \
 $${CRONO_SRC}/crono/mt/Mutex.hpp \
 $${CRONO_SRC}/crono/mt/os/Os.hpp \
 $${CRONO_SRC}/crono/io/Logger.hpp \
+$${CRONO_SRC}/crono/io/LoggerOutput.hpp \
+$${CRONO_SRC}/crono/io/LoggerEnabled.hpp \
+$${CRONO_SRC}/crono/io/nadir/Logger.hpp \
 $${CRONO_SRC}/crono/base/Locked.hpp \
 $${CRONO_SRC}/crono/base/Acquired.hpp \
 $${CRONO_SRC}/crono/base/Joined.hpp \
@@ -55,6 +75,8 @@ $${CRONO_SRC}/crono/base/Attached.hpp \
 $${CRONO_SRC}/crono/base/Base.hpp \
 
 hello_SOURCES += \
+$${CRONO_SRC}/crono/io/LoggerOutput.cpp \
+$${CRONO_SRC}/crono/io/LoggerEnabled.cpp \
 $${CRONO_SRC}/crono/mt/Logger.cpp \
 $${CRONO_SRC}/crono/mt/os/Mutex.cpp \
 $${CRONO_SRC}/crono/mt/os/Os.cpp \

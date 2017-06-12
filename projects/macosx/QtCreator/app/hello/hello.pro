@@ -22,7 +22,7 @@ include(../../../../QtCreator/crono.pri)
 include(../../crono.pri)
 include(../../../../QtCreator/app/hello/hello.pri)
 
-TARGET = crono-hello
+TARGET = $${hello_TARGET}
 
 ########################################################################
 INCLUDEPATH += \
