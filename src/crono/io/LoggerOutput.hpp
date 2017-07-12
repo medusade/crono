@@ -161,7 +161,7 @@ protected:
 
 ///////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////
-#define CRONO_COSTREAM_LOG(ostream_, message_) \
+#define CRONO_COSTREAM_LOG_PLAIN(ostream_, message_) \
 { ::crono::io::LoggerOutput::Message message; \
   ostream_ << message << message_ << "\n"; }
 
@@ -177,7 +177,7 @@ protected:
 
 ///////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////
-#define CRONO_STDSTREAM_LOG(stream_, message_) \
+#define CRONO_STDSTREAM_LOG_PLAIN(stream_, message_) \
 { ::crono::io::LoggerOutput::Message message; message << message_; \
   fprintf(stream_, "%s\n", message.chars()); }
 
@@ -194,29 +194,34 @@ protected:
 
 ///////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////
-#define CRONO_CERR_LOG_PLAIN(message_) CRONO_COSTREAM_LOG(::std::cerr, message_)
-#define CRONO_STDERR_LOG_PLAIN(message_) CRONO_STDSTREAM_LOG(stderr, message_)
+#define CRONO_CERR_LOG_PLAIN(message_) CRONO_COSTREAM_LOG_PLAIN(::std::cerr, message_)
+#define CRONO_STDERR_LOG_PLAIN(message_) CRONO_STDSTREAM_LOG_PLAIN(stderr, message_)
 #define CRONO_CERR_LOG_FUNCTION(message_) CRONO_COSTREAM_LOG_FUNCTION(::std::cerr, message_)
 #define CRONO_STDERR_LOG_FUNCTION(message_) CRONO_STDSTREAM_LOG_FUNCTION(stderr, message_)
 #define CRONO_CERR_LOG_LOCATION(message_) CRONO_COSTREAM_LOG_LOCATION(::std::cerr, message_)
 #define CRONO_STDERR_LOG_LOCATION(message_) CRONO_STDSTREAM_LOG_LOCATION(stderr, message_)
 
-#if defined(CRONO_LOCATION_LOGGING)
-#define CRONO_CERR_LOG CRONO_CERR_LOG_LOCATION
-#define CRONO_STDERR_LOG CRONO_STDERR_LOG_LOCATION
-#else // defined(CRONO_LOCATION_LOGGING)
-#if !defined(CRONO_PLAIN_LOGGING)
-#define CRONO_CERR_LOG CRONO_CERR_LOG_FUNCTION
-#define CRONO_STDERR_LOG CRONO_STDERR_LOG_FUNCTION
-#else // !defined(CRONO_PLAIN_LOGGING)
+#if defined(CRONO_PLAIN_LOGGING)
 #define CRONO_CERR_LOG CRONO_CERR_LOG_PLAIN
 #define CRONO_STDERR_LOG CRONO_STDERR_LOG_PLAIN
-#endif // !defined(CRONO_PLAIN_LOGGING)
-#endif // defined(CRONO_LOCATION_LOGGING)
+#else // defined(CRONO_PLAIN_LOGGING)
+#if defined(CRONO_FUNCTION_LOGGING)
+#define CRONO_CERR_LOG CRONO_CERR_LOG_FUNCTION
+#define CRONO_STDERR_LOG CRONO_STDERR_LOG_FUNCTION
+#else // defined(CRONO_FUNCTION_LOGGING)
+#define CRONO_CERR_LOG CRONO_CERR_LOG_LOCATION
+#define CRONO_STDERR_LOG CRONO_STDERR_LOG_LOCATION
+#endif // defined(CRONO_FUNCTION_LOGGING)
+#endif // defined(CRONO_PLAIN_LOGGING)
+
+///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
 
 #if defined(TRACE_BUILD)
 #define CRONO_CERR_LOG_TRACE(message_) CRONO_CERR_LOG(message_)
 #define CRONO_STDERR_LOG_TRACE(message_) CRONO_STDERR_LOG(message_)
+#define CRONO_CERR_LOG_PLAIN_TRACE(message_) CRONO_CERR_LOG_PLAIN(message_)
+#define CRONO_STDERR_LOG_PLAIN_TRACE(message_) CRONO_STDERR_LOG_PLAIN(message_)
 #define CRONO_CERR_LOG_FUNCTION_TRACE(message_) CRONO_CERR_LOG_FUNCTION(message_)
 #define CRONO_STDERR_LOG_FUNCTION_TRACE(message_) CRONO_STDERR_LOG_FUNCTION(message_)
 #define CRONO_CERR_LOG_LOCATION_TRACE(message_) CRONO_CERR_LOG_LOCATION(message_)
@@ -224,6 +229,8 @@ protected:
 #else // defined(TRACE_BUILD)
 #define CRONO_CERR_LOG_TRACE(message_)
 #define CRONO_STDERR_LOG_TRACE(message_)
+#define CRONO_CERR_LOG_PLAIN_TRACE(message_)
+#define CRONO_STDERR_LOG_PLAIN_TRACE(message_)
 #define CRONO_CERR_LOG_FUNCTION_TRACE(message_)
 #define CRONO_STDERR_LOG_FUNCTION_TRACE(message_)
 #define CRONO_CERR_LOG_LOCATION_TRACE(message_)
@@ -233,6 +240,8 @@ protected:
 #if defined(DEBUG_BUILD)
 #define CRONO_CERR_LOG_DEBUG(message_) CRONO_CERR_LOG(message_)
 #define CRONO_STDERR_LOG_DEBUG(message_) CRONO_STDERR_LOG(message_)
+#define CRONO_CERR_LOG_PLAIN_DEBUG(message_) CRONO_CERR_LOG_PLAIN(message_)
+#define CRONO_STDERR_LOG_PLAIN_DEBUG(message_) CRONO_STDERR_LOG_PLAIN(message_)
 #define CRONO_CERR_LOG_FUNCTION_DEBUG(message_) CRONO_CERR_LOG_FUNCTION(message_)
 #define CRONO_STDERR_LOG_FUNCTION_DEBUG(message_) CRONO_STDERR_LOG_FUNCTION(message_)
 #define CRONO_CERR_LOG_LOCATION_DEBUG(message_) CRONO_CERR_LOG_LOCATION(message_)
@@ -248,6 +257,8 @@ protected:
 
 #define CRONO_CERR_LOG_ERROR(message_) CRONO_CERR_LOG(message_)
 #define CRONO_STDERR_LOG_ERROR(message_) CRONO_STDERR_LOG(message_)
+#define CRONO_CERR_LOG_PLAIN_ERROR(message_) CRONO_CERR_LOG_PLAIN(message_)
+#define CRONO_STDERR_LOG_PLAIN_ERROR(message_) CRONO_STDERR_LOG_PLAIN(message_)
 #define CRONO_CERR_LOG_FUNCTION_ERROR(message_) CRONO_CERR_LOG_FUNCTION(message_)
 #define CRONO_STDERR_LOG_FUNCTION_ERROR(message_) CRONO_STDERR_LOG_FUNCTION(message_)
 #define CRONO_CERR_LOG_LOCATION_ERROR(message_) CRONO_CERR_LOG_LOCATION(message_)
