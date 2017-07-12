@@ -28,6 +28,7 @@ hello_DEFINES += \
 $${crono_DEFINES} \
 
 ########################################################################
+# nadir
 hello_HEADERS += \
 $${NADIR_SRC}/nadir/io/logger.hpp \
 $${NADIR_SRC}/nadir/io/logger_stdio.hpp \
@@ -36,6 +37,7 @@ $${NADIR_SRC}/nadir/io/logger_level.hpp \
 hello_SOURCES += \
 
 ########################################################################
+# patrona
 hello_HEADERS += \
 $${PATRONA_SRC}/patrona/cpp/xos/console/getopt/Main.hpp \
 $${PATRONA_SRC}/patrona/cpp/xos/console/Main.hpp \
@@ -55,17 +57,8 @@ $${CRONO_SRC}/crono/base/nadir/Base.hpp \
 hello_SOURCES += \
 
 ########################################################################
+# base
 hello_HEADERS += \
-$${CRONO_SRC}/crono/mt/Logger.hpp \
-$${CRONO_SRC}/crono/mt/apple/osx/Mutex.hpp \
-$${CRONO_SRC}/crono/mt/posix/Mutex.hpp \
-$${CRONO_SRC}/crono/mt/os/Mutex.hpp \
-$${CRONO_SRC}/crono/mt/Mutex.hpp \
-$${CRONO_SRC}/crono/mt/os/Os.hpp \
-$${CRONO_SRC}/crono/io/Logger.hpp \
-$${CRONO_SRC}/crono/io/LoggerOutput.hpp \
-$${CRONO_SRC}/crono/io/LoggerEnabled.hpp \
-$${CRONO_SRC}/crono/io/nadir/Logger.hpp \
 $${CRONO_SRC}/crono/base/Locked.hpp \
 $${CRONO_SRC}/crono/base/Acquired.hpp \
 $${CRONO_SRC}/crono/base/Joined.hpp \
@@ -75,12 +68,34 @@ $${CRONO_SRC}/crono/base/Attached.hpp \
 $${CRONO_SRC}/crono/base/Base.hpp \
 
 hello_SOURCES += \
-$${CRONO_SRC}/crono/io/LoggerOutput.cpp \
-$${CRONO_SRC}/crono/io/LoggerEnabled.cpp \
+$${CRONO_SRC}/crono/base/Base.cpp \
+
+########################################################################
+# mt
+hello_HEADERS += \
+$${CRONO_SRC}/crono/mt/Logger.hpp \
+$${CRONO_SRC}/crono/mt/apple/osx/Mutex.hpp \
+$${CRONO_SRC}/crono/mt/posix/Mutex.hpp \
+$${CRONO_SRC}/crono/mt/os/Mutex.hpp \
+$${CRONO_SRC}/crono/mt/Mutex.hpp \
+$${CRONO_SRC}/crono/mt/os/Os.hpp \
+
+hello_SOURCES += \
 $${CRONO_SRC}/crono/mt/Logger.cpp \
 $${CRONO_SRC}/crono/mt/os/Mutex.cpp \
 $${CRONO_SRC}/crono/mt/os/Os.cpp \
-$${CRONO_SRC}/crono/base/Base.cpp \
+
+########################################################################
+# io
+hello_HEADERS += \
+$${CRONO_SRC}/crono/io/Logger.hpp \
+$${CRONO_SRC}/crono/io/LoggerOutput.hpp \
+$${CRONO_SRC}/crono/io/LoggerEnabled.hpp \
+$${CRONO_SRC}/crono/io/nadir/Logger.hpp \
+
+hello_SOURCES += \
+$${CRONO_SRC}/crono/io/LoggerOutput.cpp \
+$${CRONO_SRC}/crono/io/LoggerEnabled.cpp \
 
 ########################################################################
 hello_HEADERS += \
