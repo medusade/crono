@@ -291,6 +291,20 @@ if ((logger)?(logger->IsEnabledFor(level_)):(false)) {\
 
 ///////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////
+#define XOS_LOG_LOCATION_DEBUG_TRACE(cond, message) \
+{ if ((cond)) { XOS_LOG_LOCATION_DEBUG(message); } \
+  else { XOS_LOG_LOCATION_TRACE(message); } }
+
+#define XOS_LOG_FUNCTION_DEBUG_TRACE(cond, message) \
+{ if ((cond)) { XOS_LOG_FUNCTION_DEBUG(message); } \
+  else { XOS_LOG_FUNCTION_TRACE(message); } }
+
+#define XOS_LOG_PLAIN_DEBUG_TRACE(cond, message) \
+{ if ((cond)) { XOS_LOG_PLAIN_DEBUG(message); } \
+  else { XOS_LOG_PLAIN_TRACE(message); } }
+
+///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
 #define XOS_IF_LOG_LOCATION_FATAL(message) XOS_IF_LOG_LOCATION(XOS_DEFAULT_LOGGER, ::xos::logger::LevelFatal, message)
 #define XOS_IF_LOG_LOCATION_ERROR(message) XOS_IF_LOG_LOCATION(XOS_DEFAULT_LOGGER, ::xos::logger::LevelError, message)
 #define XOS_IF_LOG_LOCATION_WARN(message) XOS_IF_LOG_LOCATION(XOS_DEFAULT_LOGGER, ::xos::logger::LevelWarn, message)
@@ -319,6 +333,7 @@ if ((logger)?(logger->IsEnabledFor(level_)):(false)) {\
 #define XOS_LOG_INFO  XOS_LOG_PLAIN_INFO
 #define XOS_LOG_DEBUG XOS_LOG_PLAIN_DEBUG
 #define XOS_LOG_TRACE XOS_LOG_PLAIN_TRACE
+#define XOS_LOG_DEBUG_TRACE XOS_LOG_PLAIN_DEBUG_TRACE
 #else // defined(XOS_PLAIN_LOGGING)
 #if defined(XOS_FUNCTION_LOGGING)
 #define XOS_LOG_FATAL XOS_LOG_FUNCTION_FATAL
@@ -327,6 +342,7 @@ if ((logger)?(logger->IsEnabledFor(level_)):(false)) {\
 #define XOS_LOG_INFO  XOS_LOG_FUNCTION_INFO
 #define XOS_LOG_DEBUG XOS_LOG_FUNCTION_DEBUG
 #define XOS_LOG_TRACE XOS_LOG_FUNCTION_TRACE
+#define XOS_LOG_DEBUG_TRACE XOS_LOG_FUNCTION_DEBUG_TRACE
 #else // defined(XOS_FUNCTION_LOGGING)
 #define XOS_LOG_FATAL XOS_LOG_LOCATION_FATAL
 #define XOS_LOG_ERROR XOS_LOG_LOCATION_ERROR
@@ -334,6 +350,7 @@ if ((logger)?(logger->IsEnabledFor(level_)):(false)) {\
 #define XOS_LOG_INFO  XOS_LOG_LOCATION_INFO
 #define XOS_LOG_DEBUG XOS_LOG_LOCATION_DEBUG
 #define XOS_LOG_TRACE XOS_LOG_LOCATION_TRACE
+#define XOS_LOG_DEBUG_TRACE XOS_LOG_LOCATION_DEBUG_TRACE
 #endif // defined(XOS_FUNCTION_LOGGING)
 #endif // defined(XOS_PLAIN_LOGGING)
 
