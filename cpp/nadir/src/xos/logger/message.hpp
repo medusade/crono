@@ -13,57 +13,48 @@
 /// or otherwise) arising in any way out of the use of this software, 
 /// even if advised of the possibility of such damage.
 ///
-///   File: Main.hpp
+///   File: message.hpp
 ///
 /// Author: $author$
-///   Date: 8/20/2017
+///   Date: 9/10/2017
 ///////////////////////////////////////////////////////////////////////
-#ifndef _CRONO_CONSOLE_MT_GETOPT_MAIN_HPP
-#define _CRONO_CONSOLE_MT_GETOPT_MAIN_HPP
+#ifndef _XOS_LOGGER_MESSAGE_HPP
+#define _XOS_LOGGER_MESSAGE_HPP
 
-#include "crono/console/mt/getopt/MainOpt.hpp"
-#include "crono/console/getopt/Main.hpp"
-#include "fila/console/mt/getopt/Main.hpp"
+#include "xos/logger/location.hpp"
 
-namespace crono {
-namespace console {
-namespace mt {
-namespace getopt {
+namespace xos {
+namespace logger {
 
-typedef crono::console::getopt::MainImplements MainImplements;
-typedef crono::console::getopt::MainT
-<MainOpt, MainImplements, fila::console::mt::getopt::Main> MainExtends;
+typedef string_implements message_implements;
+typedef string message_extends;
 ///////////////////////////////////////////////////////////////////////
-///  Class: MainT
+///  class: message
 ///////////////////////////////////////////////////////////////////////
-template
-<class TOptImplements = MainOpt,
- class TImplements = MainImplements, class TExtends = MainExtends>
-
-class _EXPORT_CLASS MainT
-: virtual public TOptImplements, virtual public TImplements, public TExtends {
+class _EXPORT_CLASS message
+: virtual public message_implements, public message_extends {
 public:
-    typedef TOptImplements OptImplements;
-    typedef TImplements Implements;
-    typedef TExtends Extends;
-    typedef typename Implements::char_t char_t;
-    typedef typename Implements::endchar_t endchar_t;
-    static const endchar_t endchar = Implements::endchar;
+    typedef message_implements implements;
+    typedef message_extends extends;
     ///////////////////////////////////////////////////////////////////////
-    /// Constructor: MainT
+    /// constructor: message
     ///////////////////////////////////////////////////////////////////////
-    MainT() {
-    }
-    virtual ~MainT() {
+    message() {}
+    ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
+    message& operator << (const extends& str) { append(str.c_str()); return *this; }
+    message& operator << (const char* chars) { append(chars); return *this; }
+    message& operator << (int i) {
+        string::from_signed from(i);
+        string s(from);
+        append(s);
+        return *this;
     }
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
 };
-typedef MainT<> Main;
 
-} // namespace getopt
-} // namespace mt 
-} // namespace console 
-} // namespace crono 
+} // namespace logger
+} // namespace xos 
 
-#endif // _CRONO_CONSOLE_MT_GETOPT_MAIN_HPP 
+#endif // _XOS_LOGGER_MESSAGE_HPP 

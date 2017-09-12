@@ -13,57 +13,62 @@
 /// or otherwise) arising in any way out of the use of this software, 
 /// even if advised of the possibility of such damage.
 ///
-///   File: Main.hpp
+///   File: enabled.hpp
 ///
 /// Author: $author$
-///   Date: 8/20/2017
+///   Date: 9/10/2017
 ///////////////////////////////////////////////////////////////////////
-#ifndef _CRONO_CONSOLE_MT_GETOPT_MAIN_HPP
-#define _CRONO_CONSOLE_MT_GETOPT_MAIN_HPP
+#ifndef _XOS_LOGGER_ENABLED_HPP
+#define _XOS_LOGGER_ENABLED_HPP
 
-#include "crono/console/mt/getopt/MainOpt.hpp"
-#include "crono/console/getopt/Main.hpp"
-#include "fila/console/mt/getopt/Main.hpp"
+#include "xos/logger/level.hpp"
+#include "xos/base/locked.hpp"
 
-namespace crono {
-namespace console {
-namespace mt {
-namespace getopt {
+namespace xos {
+namespace logger {
 
-typedef crono::console::getopt::MainImplements MainImplements;
-typedef crono::console::getopt::MainT
-<MainOpt, MainImplements, fila::console::mt::getopt::Main> MainExtends;
+typedef locked enabled_implements;
 ///////////////////////////////////////////////////////////////////////
-///  Class: MainT
+///  class: enabled
 ///////////////////////////////////////////////////////////////////////
-template
-<class TOptImplements = MainOpt,
- class TImplements = MainImplements, class TExtends = MainExtends>
-
-class _EXPORT_CLASS MainT
-: virtual public TOptImplements, virtual public TImplements, public TExtends {
+class _EXPORT_CLASS enabled: virtual public enabled_implements {
 public:
-    typedef TOptImplements OptImplements;
-    typedef TImplements Implements;
-    typedef TExtends Extends;
-    typedef typename Implements::char_t char_t;
-    typedef typename Implements::endchar_t endchar_t;
-    static const endchar_t endchar = Implements::endchar;
+    typedef enabled_implements Implements;
+
     ///////////////////////////////////////////////////////////////////////
-    /// Constructor: MainT
+    /// function: enable_for/enabled_for
     ///////////////////////////////////////////////////////////////////////
-    MainT() {
+    virtual level enable_for(const level& _level) {
+        level enabled_for = this->enabled_for();
+        return enabled_for;
     }
-    virtual ~MainT() {
+    virtual level enabled_for() const {
+        level enabled_for = this->enabled_for_default();
+        return enabled_for;
     }
+    virtual bool is_enabled_for(const level& _level) const {
+        level enabled_for = this->enabled_for();
+        if ((_level) && (_level == (_level & enabled_for))) {
+            return true;
+        }
+        return false;
+    }
+    virtual level enabled_for_default() const {
+#if defined(TRACE_BUILD)
+        return levels_trace;
+#else // defined(tRACE_BUILD)
+#if defined(DEBUG_BUILD)
+        return levels_debug;
+#else // defined(dEBUG_BUILD)
+        return levels_error;
+#endif // defined(dEBUG_BUILD)
+#endif // defined(tRACE_BUILD)
+    }
+
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
 };
-typedef MainT<> Main;
+} // namespace logger
+} // namespace xos 
 
-} // namespace getopt
-} // namespace mt 
-} // namespace console 
-} // namespace crono 
-
-#endif // _CRONO_CONSOLE_MT_GETOPT_MAIN_HPP 
+#endif // _XOS_LOGGER_ENABLED_HPP 

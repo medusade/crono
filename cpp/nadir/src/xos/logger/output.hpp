@@ -13,57 +13,66 @@
 /// or otherwise) arising in any way out of the use of this software, 
 /// even if advised of the possibility of such damage.
 ///
-///   File: Main.hpp
+///   File: output.hpp
 ///
 /// Author: $author$
-///   Date: 8/20/2017
+///   Date: 9/10/2017
 ///////////////////////////////////////////////////////////////////////
-#ifndef _CRONO_CONSOLE_MT_GETOPT_MAIN_HPP
-#define _CRONO_CONSOLE_MT_GETOPT_MAIN_HPP
+#ifndef _XOS_LOGGER_OUTPUT_HPP
+#define _XOS_LOGGER_OUTPUT_HPP
 
-#include "crono/console/mt/getopt/MainOpt.hpp"
-#include "crono/console/getopt/Main.hpp"
-#include "fila/console/mt/getopt/Main.hpp"
+#include "xos/logger/stdio.hpp"
+#include "xos/logger/enabled.hpp"
 
-namespace crono {
-namespace console {
-namespace mt {
-namespace getopt {
+namespace xos {
+namespace logger {
 
-typedef crono::console::getopt::MainImplements MainImplements;
-typedef crono::console::getopt::MainT
-<MainOpt, MainImplements, fila::console::mt::getopt::Main> MainExtends;
+typedef enabled output_implements;
 ///////////////////////////////////////////////////////////////////////
-///  Class: MainT
+///  class: output
 ///////////////////////////////////////////////////////////////////////
-template
-<class TOptImplements = MainOpt,
- class TImplements = MainImplements, class TExtends = MainExtends>
-
-class _EXPORT_CLASS MainT
-: virtual public TOptImplements, virtual public TImplements, public TExtends {
+class _EXPORT_CLASS output: virtual public output_implements {
 public:
-    typedef TOptImplements OptImplements;
-    typedef TImplements Implements;
-    typedef TExtends Extends;
-    typedef typename Implements::char_t char_t;
-    typedef typename Implements::endchar_t endchar_t;
-    static const endchar_t endchar = Implements::endchar;
+    typedef output_implements implements;
+protected:
     ///////////////////////////////////////////////////////////////////////
-    /// Constructor: MainT
+    /// function: log/log_ln
     ///////////////////////////////////////////////////////////////////////
-    MainT() {
+    virtual void log(const location& _location) {
+        log(_location.file_name().c_str());
+        log("[");
+        log(_location.line_number().c_str());
+        log("]");
+        log(" ");
+        log(_location.function_name().c_str());
+        log(": ");
     }
-    virtual ~MainT() {
+    virtual void log(const function& _function) {
+        log(_function.c_str());
+        log(": ");
+    }
+    virtual void log(const message& _message) {
+        log(_message.c_str());
+    }
+    virtual void log(const char* chars, size_t length) {
+        if ((chars) && (length)) {
+            for (char c = *(chars); length; --length, c = *(++chars)) {
+                ::std::cerr << c;
+            }
+        }
+    }
+    virtual void log(const char* chars) {
+        ::std::cerr << chars;
+    }
+    virtual void log_ln() {
+        ::std::cerr << ::std::endl;
+        ::std::cerr.flush();
     }
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
 };
-typedef MainT<> Main;
 
-} // namespace getopt
-} // namespace mt 
-} // namespace console 
-} // namespace crono 
+} // namespace logger
+} // namespace xos 
 
-#endif // _CRONO_CONSOLE_MT_GETOPT_MAIN_HPP 
+#endif // _XOS_LOGGER_OUTPUT_HPP 

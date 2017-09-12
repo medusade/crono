@@ -42,6 +42,9 @@ public:
     typedef MainOpt OptImplements;
     typedef MainImplements Implements;
     typedef MainExtends Extends;
+    typedef typename Implements::char_t char_t;
+    typedef typename Implements::endchar_t endchar_t;
+    static const endchar_t endchar = Implements::endchar;
     ///////////////////////////////////////////////////////////////////////
     /// Constructor: Main
     ///////////////////////////////////////////////////////////////////////

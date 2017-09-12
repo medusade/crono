@@ -13,38 +13,44 @@
 /// or otherwise) arising in any way out of the use of this software, 
 /// even if advised of the possibility of such damage.
 ///
-///   File: Main_main.cpp
+///   File: function.hpp
 ///
 /// Author: $author$
-///   Date: 8/9/2017
+///   Date: 9/10/2017
 ///////////////////////////////////////////////////////////////////////
-#include "xos/console/mt/Main_main.hpp"
-#include "xos/mt/Logger.hpp"
+#ifndef _XOS_LOGGER_FUNCTION_HPP
+#define _XOS_LOGGER_FUNCTION_HPP
+
+#include "xos/logger/level.hpp"
+#include "xos/base/string.hpp"
 
 namespace xos {
-namespace console {
-namespace mt {
+namespace logger {
 
-} // namespace mt 
-} // namespace console 
+typedef string_implements function_implements;
+typedef string function_extends;
+///////////////////////////////////////////////////////////////////////
+///  class: function
+///////////////////////////////////////////////////////////////////////
+class _EXPORT_CLASS function
+: virtual public function_implements, public function_extends {
+public:
+    typedef function_implements Implements;
+    typedef function_extends Extends;
+    ///////////////////////////////////////////////////////////////////////
+    /// constructor: function
+    ///////////////////////////////////////////////////////////////////////
+    function(const string& name): Extends(name) {
+    }
+    function(const char* name): Extends(name) {
+    }
+    function(const function& copy): Extends(copy) {
+    }
+    ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
+};
+
+} // namespace logger
 } // namespace xos 
 
-///////////////////////////////////////////////////////////////////////
-/// Function: main
-///////////////////////////////////////////////////////////////////////
-int main(int argc, char** argv, char** env) {
-    int err = 1;
-
-    try {
-        ::xos::mt::os::logger::Mutex mutex;
-        ::xos::console::mt::Main::Locked locked(mutex);
-        ::xos::mt::Logger logger(locked);
-
-        XOS_ERR_LOG_DEBUG("xos::console::Main::TheMain(argc, argv, env)...");
-        err = xos::console::Main::TheMain(argc, argv, env);
-        XOS_ERR_LOG_DEBUG("...err = " << err << " on xos::console::Main::TheMain(argc, argv, env)...");
-    } catch (const ::xos::CreateException& e) {
-        XOS_ERR_LOG_ERROR("...caught ::xos::CreateException& e = \"" << e.StatusToChars() << "\"")
-    }
-    return err;
-}
+#endif // _XOS_LOGGER_FUNCTION_HPP 

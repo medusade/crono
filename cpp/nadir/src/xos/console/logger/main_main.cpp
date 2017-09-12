@@ -13,38 +13,40 @@
 /// or otherwise) arising in any way out of the use of this software, 
 /// even if advised of the possibility of such damage.
 ///
-///   File: Main_main.cpp
+///   File: main_main.cpp
 ///
 /// Author: $author$
-///   Date: 8/9/2017
+///   Date: 9/10/2017
 ///////////////////////////////////////////////////////////////////////
-#include "xos/console/mt/Main_main.hpp"
-#include "xos/mt/Logger.hpp"
+#include "xos/console/logger/main_main.hpp"
+#include "xos/console/locked.hpp"
+#include "xos/logger/interface.hpp"
 
 namespace xos {
 namespace console {
-namespace mt {
+namespace logger {
 
-} // namespace mt 
+} // namespace logger 
 } // namespace console 
 } // namespace xos 
 
 ///////////////////////////////////////////////////////////////////////
-/// Function: main
 ///////////////////////////////////////////////////////////////////////
 int main(int argc, char** argv, char** env) {
-    int err = 1;
+    int err = 0;
 
+    XOS_ERR_LOG_DEBUG("try {...");
     try {
-        ::xos::mt::os::logger::Mutex mutex;
-        ::xos::console::mt::Main::Locked locked(mutex);
-        ::xos::mt::Logger logger(locked);
+        ::xos::unlocked unlocked;
+        ::xos::console::locked locked(unlocked);
+        ::xos::logger::base logger(locked);
 
-        XOS_ERR_LOG_DEBUG("xos::console::Main::TheMain(argc, argv, env)...");
-        err = xos::console::Main::TheMain(argc, argv, env);
-        XOS_ERR_LOG_DEBUG("...err = " << err << " on xos::console::Main::TheMain(argc, argv, env)...");
-    } catch (const ::xos::CreateException& e) {
-        XOS_ERR_LOG_ERROR("...caught ::xos::CreateException& e = \"" << e.StatusToChars() << "\"")
-    }
+        XOS_LOG_DEBUG("::xos::console::main::the_main(argc, argv, env)...");
+        err = ::xos::console::main::the_main(argc, argv, env);
+        XOS_LOG_DEBUG("...err = " << err << " on ::xos::console::main::the_main(argc, argv, env)");
+    } catch(const ::xos::exception& e) {
+        XOS_ERR_LOG_ERROR("...catch(const ::xos::exception& e = \"" << e.to_chars() << "\")");
+    } // try
+    XOS_ERR_LOG_DEBUG("...} // try");
     return err;
 }

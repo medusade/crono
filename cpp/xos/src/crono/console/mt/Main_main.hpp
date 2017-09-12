@@ -13,38 +13,22 @@
 /// or otherwise) arising in any way out of the use of this software, 
 /// even if advised of the possibility of such damage.
 ///
-///   File: Main_main.cpp
+///   File: Main_main.hpp
 ///
 /// Author: $author$
-///   Date: 8/9/2017
+///   Date: 9/7/2017
 ///////////////////////////////////////////////////////////////////////
-#include "xos/console/mt/Main_main.hpp"
-#include "xos/mt/Logger.hpp"
+#ifndef _CRONO_CONSOLE_MT_MAIN_MAIN_HPP
+#define _CRONO_CONSOLE_MT_MAIN_MAIN_HPP
 
-namespace xos {
+#include "xos/console/mt/Main.hpp"
+
+namespace crono {
 namespace console {
 namespace mt {
 
 } // namespace mt 
 } // namespace console 
-} // namespace xos 
+} // namespace crono 
 
-///////////////////////////////////////////////////////////////////////
-/// Function: main
-///////////////////////////////////////////////////////////////////////
-int main(int argc, char** argv, char** env) {
-    int err = 1;
-
-    try {
-        ::xos::mt::os::logger::Mutex mutex;
-        ::xos::console::mt::Main::Locked locked(mutex);
-        ::xos::mt::Logger logger(locked);
-
-        XOS_ERR_LOG_DEBUG("xos::console::Main::TheMain(argc, argv, env)...");
-        err = xos::console::Main::TheMain(argc, argv, env);
-        XOS_ERR_LOG_DEBUG("...err = " << err << " on xos::console::Main::TheMain(argc, argv, env)...");
-    } catch (const ::xos::CreateException& e) {
-        XOS_ERR_LOG_ERROR("...caught ::xos::CreateException& e = \"" << e.StatusToChars() << "\"")
-    }
-    return err;
-}
+#endif // _CRONO_CONSOLE_MT_MAIN_MAIN_HPP 
