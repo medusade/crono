@@ -20,6 +20,7 @@
 ########################################################################
 
 OTHER_PKG = ../../../../../../../..
+OTHER_BLD = ..
 
 ########################################################################
 # rostra
@@ -100,6 +101,11 @@ $${rostra_INCLUDEPATH} \
 
 crono_DEFINES += \
 BUILD_CONFIG=$${BUILD_CONFIG} \
+$${rostra_DEFINES} \
+$${nadir_DEFINES} \
+$${patrona_DEFINES} \
+$${fila_DEFINES} \
+
 
 crono_LIBS += \
 -L$${CRONO_LIB}/libcrono \

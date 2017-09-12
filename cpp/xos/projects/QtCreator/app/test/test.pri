@@ -51,12 +51,30 @@ $${NADIR_SRC}/xos/console/Main.cpp \
 $${NADIR_SRC}/xos/console/Main_main.cpp \
 
 ########################################################################
-# nadir
+# fila
 test_HEADERS += \
+$${FILA_SRC}/xos/mt/os/Semaphore.hpp \
+$${FILA_SRC}/xos/mt/apple/osx/Semaphore.hpp \
+$${FILA_SRC}/xos/mt/apple/mach/Semaphore.hpp \
+$${FILA_SRC}/xos/mt/posix/Semaphore.hpp \
+$${FILA_SRC}/xos/mt/Semaphore.hpp \
+\
+$${FILA_SRC}/xos/mt/os/Mutex.hpp \
 $${FILA_SRC}/xos/mt/posix/Mutex.hpp \
+$${FILA_SRC}/xos/mt/Mutex.hpp \
+$${FILA_SRC}/xos/mt/os/Os.hpp \
+\
+$${FILA_SRC}/xos/app/console/mt/hello/Main.hpp \
+$${FILA_SRC}/xos/app/console/mt/hello/MainOpt.hpp \
+$${FILA_SRC}/xos/console/mt/getopt/Main.hpp \
+$${FILA_SRC}/xos/console/mt/getopt/MainOpt.hpp \
+$${FILA_SRC}/xos/console/mt/Main.hpp \
+$${FILA_SRC}/xos/console/mt/Main_main.hpp \
+$${FILA_SRC}/xos/console/mt/Locked.hpp \
 
 test_SOURCES += \
-$${FILA_SRC}/xos/mt/posix/Mutex.cpp \
+$${FILA_SRC}/xos/mt/os/Semaphore.cpp \
+$${FILA_SRC}/xos/mt/os/Mutex.cpp \
 
 ########################################################################
 # crono
