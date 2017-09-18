@@ -17,8 +17,9 @@
 #
 # Author: $author$
 #   Date: 8/5/2017
+#
+# macosx QtCreator .pri file for crono
 ########################################################################
-
 CRONO_OS = macosx
 #QMAKE_CXXFLAGS += -std=c++11
 #QMAKE_CXXFLAGS += -std=c++0x
@@ -60,15 +61,6 @@ fila_LIBS += \
 -lfila \
 
 ########################################################################
-# fila
-FILA_BLD = $${OTHER_BLD}/$${FILA_PKG}/build/$${CRONO_OS}/QtCreator/$${BUILD_CONFIG}
-FILA_LIB = $${FILA_BLD}/lib
-
-fila_LIBS += \
--L$${FILA_LIB} \
--lfila \
-
-########################################################################
 crono_INCLUDEPATH += \
 
 crono_DEFINES += \
@@ -79,5 +71,6 @@ $${fila_LIBS} \
 $${patrona_LIBS} \
 $${nadir_LIBS} \
 $${rostra_LIBS} \
+$${build_crono_LIBS} \
 -lpthread \
 -ldl \

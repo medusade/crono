@@ -20,12 +20,12 @@
 #
 # QtCreator .pro file for crono executable crono
 ########################################################################
+include(../../../../../build/QtCreator/crono.pri)
 include(../../../../QtCreator/crono.pri)
 include(../../crono.pri)
 include(../../../../QtCreator/app/crono/crono.pri)
 
 TARGET = $${crono_exe_TARGET}
-
 
 ########################################################################
 INCLUDEPATH += \

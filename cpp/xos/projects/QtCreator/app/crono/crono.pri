@@ -29,16 +29,19 @@ $${crono_INCLUDEPATH} \
 
 crono_exe_DEFINES += \
 $${crono_DEFINES} \
+XOS_APP_CONSOLE_CRONO_THE_MAIN \
 
 ########################################################################
 # crono
 crono_exe_HEADERS += \
-$${CRONO_SRC}/xos/app/console/mt/hello/Main.hpp \
-$${CRONO_SRC}/xos/console/mt/Main_main.hpp \
+$${CRONO_SRC}/xos/app/console/crono/Main.hpp \
+$${CRONO_SRC}/xos/app/console/crono/MainOpt.hpp \
+$${CRONO_SRC}/xos/console/logger/Main_main.hpp \
 
 crono_exe_SOURCES += \
-$${CRONO_SRC}/xos/app/console/mt/hello/Main.cpp \
-$${CRONO_SRC}/xos/console/mt/Main_main.cpp \
+$${CRONO_SRC}/xos/app/console/crono/Main.cpp \
+$${CRONO_SRC}/xos/app/console/crono/MainOpt.cpp \
+$${CRONO_SRC}/xos/console/logger/Main_main.cpp \
 
 ########################################################################
 crono_exe_LIBS += \

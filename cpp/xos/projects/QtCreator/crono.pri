@@ -17,6 +17,8 @@
 #
 # Author: $author$
 #   Date: 8/5/2017
+#
+# QtCreator .pri file for crono
 ########################################################################
 
 OTHER_PKG = ../../../../../../../..
@@ -98,6 +100,7 @@ $${fila_INCLUDEPATH} \
 $${patrona_INCLUDEPATH} \
 $${nadir_INCLUDEPATH} \
 $${rostra_INCLUDEPATH} \
+$${build_crono_INCLUDEPATH} \
 
 crono_DEFINES += \
 BUILD_CONFIG=$${BUILD_CONFIG} \
@@ -105,7 +108,7 @@ $${rostra_DEFINES} \
 $${nadir_DEFINES} \
 $${patrona_DEFINES} \
 $${fila_DEFINES} \
-
+$${build_crono_DEFINES} \
 
 crono_LIBS += \
 -L$${CRONO_LIB}/libcrono \
