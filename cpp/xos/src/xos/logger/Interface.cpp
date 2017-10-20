@@ -24,8 +24,14 @@ namespace xos {
 namespace logger {
 
 ///////////////////////////////////////////////////////////////////////
-///  Class: Interface
+/// Function: Set/Get/Default
 ///////////////////////////////////////////////////////////////////////
+Interface* SetDefault(Interface* to) {
+    return Interface::SetDefault(to);
+}
+Interface* GetDefault() {
+    return Interface::GetDefault();
+}
 
-} // namespace logger 
+} // namespace logger
 } // namespace xos 
