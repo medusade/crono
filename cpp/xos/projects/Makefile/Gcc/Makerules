@@ -16,7 +16,7 @@
 #   File: Makerules
 #
 # Author: $author$
-#   Date: 9/2/2017
+#   Date: 10/10/2017
 #
 # generic Gcc Makerules
 ########################################################################
@@ -217,19 +217,19 @@ ${EXETARGET}: ${EXEDEP} ${EXE_OBJS} ${BINDIR}
 #
 # compile
 #
-compiling: 
+compiling:
 	@echo "Comping..."
 
 compile: compiling compile-lib compile-exe
 	@echo "...Compiled"
 
-compiling-lib: 
+compiling-lib:
 	@echo "Comping " ${LIB_OBJS} ...
 
 compile-lib: compiling-lib ${LIB_OBJS}
 	@echo "...Compiled" ${LIB_OBJS}
 
-compiling-exe: 
+compiling-exe:
 	@echo "Comping " ${EXE_OBJS} ...
 
 compile-exe: compiling-exe ${EXE_OBJS}

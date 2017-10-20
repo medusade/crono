@@ -13,31 +13,26 @@
 # or otherwise) arising in any way out of the use of this software,
 # even if advised of the possibility of such damage.
 #
-#   File: Makefile
+#   File: Makedefines
 #
 # Author: $author$
 #   Date: 10/10/2017
 #
-# Linux Gcc Makefile for crono subdurs
+# build Gcc Makedefines for crono
 ########################################################################
 
+#
+# build OS
+#
+ifndef OS
 OS = linux
-PKG = ../../../..
-
-MAK = projects/Makefile/Gcc
-PRJ = projects/${OS}/Makefile/Gcc
-SRC = src
-
-include $(PKG)/$(MAK)/Makedefines
+endif
 
 #
-# Source subdirs
+# install directory
 #
-#SRC_DIRS = \
-#$(PKG)/$(PRJ)/somedir \
-#
-SRC_DIRS = \
-$(PKG)/$(PRJ)/lib/libcrono \
-$(PKG)/$(PRJ)/app/crono \
+ifndef INS
+INS = ${HOME}/build/crono
+endif
 
-include $(PKG)/$(MAK)/Makedirs
+

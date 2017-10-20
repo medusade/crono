@@ -16,7 +16,7 @@
 #   File: Makefile
 #
 # Author: $author$
-#   Date: 9/1/2017
+#   Date: 10/10/2017
 #
 # generic Gcc Makefile for crono Library libcrono
 ########################################################################
@@ -77,7 +77,7 @@ ${crono_USRLIBDIRS} \
 # Library .cpp sources
 #
 libcrono_LIB_CPP_SOURCES += \
-${CRONO_SRC}/crono/base/Base.cpp \
+${CRONO_SRC}/xos/logger/Interface.cpp \
 
 #
 # Library .m sources
@@ -93,7 +93,3 @@ ${CRONO_SRC}/crono/base/Base.cpp \
 
 
 ########################################################################
-
-
-
-

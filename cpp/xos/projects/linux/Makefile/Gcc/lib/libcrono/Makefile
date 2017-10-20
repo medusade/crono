@@ -16,7 +16,7 @@
 #   File: Makefile
 #
 # Author: $author$
-#   Date: 9/2/2017
+#   Date: 10/10/2017
 #
 # Linux Gcc Makefile for crono Library libcrono
 ########################################################################
@@ -145,5 +145,3 @@ include $(PKG)/$(MAK)/Makerules
 #	  ((make) || (exit 1));\
 #	  popd)
 #
-
-

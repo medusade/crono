@@ -67,10 +67,7 @@ crono_DEFINES += \
 
 ########################################################################
 crono_LIBS += \
-$${fila_LIBS} \
-$${patrona_LIBS} \
 $${nadir_LIBS} \
-$${rostra_LIBS} \
 $${build_crono_LIBS} \
 -lpthread \
 -ldl \

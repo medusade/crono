@@ -16,7 +16,7 @@
 #   File: Makefile
 #
 # Author: $author$
-#   Date: 9/2/2017
+#   Date: 10/10/2017
 #
 # generic Gcc Makefile for crono
 ########################################################################
@@ -37,14 +37,6 @@ ROSTRA_LIB = ${ROSTRA_BLD}/lib
 ROSTRA_BIN = ${ROSTRA_BLD}/bin
 
 ########################################################################
-# patrona
-PATRONA_PKG = ${CRONO_PKG}/../../../patrona/cpp/xos
-PATRONA_SRC = ${PATRONA_PKG}/src
-PATRONA_BLD = ${PATRONA_PKG}/${BLD}/${BUILD_TYPE}
-PATRONA_LIB = ${PATRONA_BLD}/lib
-PATRONA_BIN = ${PATRONA_BLD}/bin
-
-########################################################################
 # nadir
 NADIR_PKG = ${CRONO_PKG}/../../../nadir/cpp/xos
 NADIR_SRC = ${NADIR_PKG}/src
@@ -53,12 +45,12 @@ NADIR_LIB = ${NADIR_BLD}/lib
 NADIR_BIN = ${NADIR_BLD}/bin
 
 ########################################################################
-# fila
-FILA_PKG = ${CRONO_PKG}/../../../fila/cpp/xos
-FILA_SRC = ${FILA_PKG}/src
-FILA_BLD = ${FILA_PKG}/${BLD}/${BUILD_TYPE}
-FILA_LIB = ${FILA_BLD}/lib
-FILA_BIN = ${FILA_BLD}/bin
+# patrona
+PATRONA_PKG = ${CRONO_PKG}/../../../patrona/cpp/xos
+PATRONA_SRC = ${PATRONA_PKG}/src
+PATRONA_BLD = ${PATRONA_PKG}/${BLD}/${BUILD_TYPE}
+PATRONA_LIB = ${PATRONA_BLD}/lib
+PATRONA_BIN = ${PATRONA_BLD}/bin
 
 
 ########################################################################
@@ -68,9 +60,8 @@ ${build_crono_USRDEFINES} \
 
 crono_USRINCLUDES += \
 -I${CRONO_SRC} \
--I${FILA_SRC} \
--I${NADIR_SRC} \
 -I${PATRONA_SRC} \
+-I${NADIR_SRC} \
 -I${ROSTRA_SRC} \
 ${build_crono_USRINCLUDES} \
 
@@ -79,18 +70,12 @@ ${build_crono_USRCXXFLAGS} \
 
 crono_USRLIBDIRS += \
 -L${CRONO_LIB} \
--L${FILA_LIB} \
 -L${NADIR_LIB} \
--L${PATRONA_LIB} \
--L${ROSTRA_LIB} \
 ${build_crono_USRLIBDIRS} \
 
 crono_LIBS += \
 -lcrono \
--lfila \
 -lnadir \
--lpatrona \
--lrostra \
 ${build_crono_LIBS} \
 
 ########################################################################

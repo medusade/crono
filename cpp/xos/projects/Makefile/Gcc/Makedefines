@@ -16,7 +16,7 @@
 #   File: Makedefines
 #
 # Author: $author$
-#   Date: 9/2/2017
+#   Date: 10/10/2017
 #
 # generic Gcc Makedefines
 ########################################################################
@@ -56,8 +56,8 @@ COMPILER_PATH =
 COMPILER_PREFIX =
 
 DEFINES = \
+$(DBGFLAGS) \
 $(BUILD_DEFINE) \
-$(DBGFLAGS)
 
 INCLUDES = \
 -I$(PKG)/$(SRC) \
@@ -67,14 +67,9 @@ LIBDIRS	= \
 -L$(LIBDIR) \
 
 ifeq ($(OS),macosx)
-STDLIBS	= \
--lpthread \
--ldl
+STDLIBS	= -lpthread -ldl
 else
-STDLIBS	= \
--lpthread \
--ldl \
--lrt
+STDLIBS	= -lpthread -ldl -lrt
 endif
 
 #

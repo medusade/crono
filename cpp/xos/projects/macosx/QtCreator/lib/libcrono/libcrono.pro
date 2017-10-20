@@ -18,6 +18,7 @@
 # Author: $author$
 #   Date: 8/5/2017
 ########################################################################
+include(../../../../../build/QtCreator/crono.pri)
 include(../../../../QtCreator/crono.pri)
 include(../../crono.pri)
 include(../../../../QtCreator/lib/libcrono/libcrono.pri)

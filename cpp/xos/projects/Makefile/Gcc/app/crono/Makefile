@@ -16,7 +16,7 @@
 #   File: Makefile
 #
 # Author: $author$
-#   Date: 9/2/2017
+#   Date: 10/10/2017
 #
 # generic Gcc Makefile for crono Executable crono
 ########################################################################
@@ -40,6 +40,7 @@ ${crono_USRCXXFLAGS} \
 #
 crono_exe_USRDEFINES += \
 ${crono_USRDEFINES} \
+-DXOS_APP_CONSOLE_CRONO_THE_MAIN \
 
 #
 # user includes
@@ -77,9 +78,9 @@ ${crono_USRLIBDIRS} \
 # Executable .cpp sources
 #
 crono_exe_EXE_CPP_SOURCES += \
-${CRONO_SRC}/xos/app/console/mt/hello/Main.cpp \
-${CRONO_SRC}/xos/app/console/mt/hello/MainOpt.cpp \
-${CRONO_SRC}/xos/console/mt/Main_main.cpp \
+${CRONO_SRC}/xos/app/console/crono/Main.cpp \
+${CRONO_SRC}/xos/app/console/crono/MainOpt.cpp \
+${CRONO_SRC}/xos/console/logger/Main_main.cpp \
 
 #
 # Executable .m sources
@@ -101,6 +102,3 @@ ${CRONO_SRC}/xos/console/mt/Main_main.cpp \
 #
 crono_exe_LIBS += \
 ${crono_LIBS}
-
-
-

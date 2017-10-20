@@ -27,8 +27,8 @@ libcrono_DEFINES += \
 ########################################################################
 # base
 libcrono_HEADERS += \
-$${NADIR_SRC}/xos/base/Base.hpp \
+$${CRONO_SRC}/xos/logger/Interface.hpp \
 
 libcrono_SOURCES += \
-$${NADIR_SRC}/xos/base/Base.cpp \
+$${CRONO_SRC}/xos/logger/Interface.cpp \
 
