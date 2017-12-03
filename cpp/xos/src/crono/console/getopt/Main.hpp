@@ -44,9 +44,11 @@ public:
     typedef TOptImplements OptImplements;
     typedef TImplements Implements;
     typedef TExtends Extends;
+
     typedef typename Implements::char_t char_t;
     typedef typename Implements::endchar_t endchar_t;
     static const endchar_t endchar = Implements::endchar;
+
     ///////////////////////////////////////////////////////////////////////
     /// Constructor: MainT
     ///////////////////////////////////////////////////////////////////////
@@ -54,6 +56,7 @@ public:
     }
     virtual ~MainT() {
     }
+
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
 };
