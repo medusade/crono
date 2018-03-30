@@ -25,18 +25,32 @@
 ///////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////
 int main(int argc, char** argv, char** env) {
-    int err = 0;
-    ::crono::mt::os::Mutex locked;
-    ::crono::mt::Logger logger(locked);
+    int err = 1;
 
-    CRONO_SET_DEFAULT_LOGGER(&logger);
-
-    CRONO_LOGGER_INIT();
-
-    CRONO_SET_LOGGING_LEVEL(CRONO_LOGGING_LEVELS_DEFAULT);
-
-    ::crono::console::Main::TheMain(argc, argv, env);
-
-    CRONO_LOGGER_FINI();
+    ERR_LOG_DEBUG("try {...");
+    try {
+        ::crono::mt::os::Mutex locked;
+        ::crono::mt::Logger logger(locked);
+    
+        ERR_LOG_DEBUG("CRONO_SET_DEFAULT_LOGGER(&logger)...");
+        CRONO_SET_DEFAULT_LOGGER(&logger);
+    
+        ERR_LOG_DEBUG("CRONO_LOGGER_INIT()...");
+        CRONO_LOGGER_INIT();
+    
+        ERR_LOG_DEBUG("CRONO_SET_LOGGING_LEVEL(CRONO_LOGGING_LEVELS_DEFAULT = " << CRONO_LOGGING_LEVELS_DEFAULT << ")...");
+        CRONO_SET_LOGGING_LEVEL(CRONO_LOGGING_LEVELS_DEFAULT);
+    
+        ERR_LOG_DEBUG("::crono::console::Main::TheMain(argc, argv, env)...");
+        err = ::crono::console::Main::TheMain(argc, argv, env);
+        ERR_LOG_DEBUG("..." << err << " = ::crono::console::Main::TheMain(argc, argv, env)");
+    
+        ERR_LOG_DEBUG("CRONO_LOGGER_FINI()...");
+        CRONO_LOGGER_FINI();
+    
+        ERR_LOG_DEBUG("...} try");
+    } catch (...) {
+        ERR_LOG_ERROR("...catch (...)");
+    }
     return err;
 }

@@ -264,6 +264,52 @@ protected:
 #define CRONO_CERR_LOG_LOCATION_ERROR(message_) CRONO_CERR_LOG_LOCATION(message_)
 #define CRONO_STDERR_LOG_LOCATION_ERROR(message_) CRONO_STDERR_LOG_LOCATION(message_)
 
+#if defined(CRONO_CERR_LOGGING)
+#define CRONO_ERR_LOG_TRACE(message_) CRONO_CERR_LOG_TRACE(message_)
+#define CRONO_ERR_LOG_PLAIN_TRACE(message_) CRONO_CERR_LOG_PLAIN_TRACE(message_)
+#define CRONO_ERR_LOG_FUNCTION_TRACE(message_) CRONO_CERR_LOG_FUNCTION_TRACE(message_)
+#define CRONO_ERR_LOG_LOCATION_TRACE(message_) CRONO_CERR_LOG_LOCATION_TRACE(message_)
+
+#define CRONO_ERR_LOG_DEBUG(message_) CRONO_CERR_LOG_DEBUG(message_)
+#define CRONO_ERR_LOG_PLAIN_DEBUG(message_) CRONO_CERR_LOG_PLAIN_DEBUG(message_)
+#define CRONO_ERR_LOG_FUNCTION_DEBUG(message_) CRONO_CERR_LOG_FUNCTION_DEBUG(message_)
+#define CRONO_ERR_LOG_LOCATION_DEBUG(message_) CRONO_CERR_LOG_LOCATION_DEBUG(message_)
+
+#define CRONO_ERR_LOG_ERROR(message_) CRONO_CERR_LOG_ERROR(message_)
+#define CRONO_ERR_LOG_PLAIN_ERROR(message_) CRONO_CERR_LOG_PLAIN_ERROR(message_)
+#define CRONO_ERR_LOG_FUNCTION_ERROR(message_) CRONO_CERR_LOG_FUNCTION_ERROR(message_)
+#define CRONO_ERR_LOG_LOCATION_ERROR(message_) CRONO_CERR_LOG_LOCATION_ERROR(message_)
+#else // defined(CRONO_CERR_LOGGING)
+#define CRONO_ERR_LOG_TRACE(message_) CRONO_STDERR_LOG_TRACE(message_)
+#define CRONO_ERR_LOG_PLAIN_TRACE(message_) CRONO_STDERR_LOG_PLAIN_TRACE(message_)
+#define CRONO_ERR_LOG_FUNCTION_TRACE(message_) CRONO_STDERR_LOG_FUNCTION_TRACE(message_)
+#define CRONO_ERR_LOG_LOCATION_TRACE(message_) CRONO_STDERR_LOG_LOCATION_TRACE(message_)
+
+#define CRONO_ERR_LOG_DEBUG(message_) CRONO_STDERR_LOG_DEBUG(message_)
+#define CRONO_ERR_LOG_PLAIN_DEBUG(message_) CRONO_STDERR_LOG_PLAIN_DEBUG(message_)
+#define CRONO_ERR_LOG_FUNCTION_DEBUG(message_) CRONO_STDERR_LOG_FUNCTION_DEBUG(message_)
+#define CRONO_ERR_LOG_LOCATION_DEBUG(message_) CRONO_STDERR_LOG_LOCATION_DEBUG(message_)
+
+#define CRONO_ERR_LOG_ERROR(message_) CRONO_STDERR_LOG_ERROR(message_)
+#define CRONO_ERR_LOG_PLAIN_ERROR(message_) CRONO_STDERR_LOG_PLAIN_ERROR(message_)
+#define CRONO_ERR_LOG_FUNCTION_ERROR(message_) CRONO_STDERR_LOG_FUNCTION_ERROR(message_)
+#define CRONO_ERR_LOG_LOCATION_ERROR(message_) CRONO_STDERR_LOG_LOCATION_ERROR(message_)
+#endif // defined(CRONO_CERR_LOGGING)
+
+///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
+#if !defined(ERR_LOG_TRACE)
+#define ERR_LOG_TRACE(message_) CRONO_ERR_LOG_TRACE(message_)
+#endif // !defined(ERR_LOG_TRACE)
+
+#if !defined(ERR_LOG_DEBUG)
+#define ERR_LOG_DEBUG(message_) CRONO_ERR_LOG_DEBUG(message_)
+#endif // !defined(ERR_LOG_DEBUG)
+
+#if !defined(ERR_LOG_ERROR)
+#define ERR_LOG_ERROR(message_) CRONO_ERR_LOG_ERROR(message_)
+#endif // !defined(ERR_LOG_ERROR)
+
 ///////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////
 #else // !defined(USE_NADIR_BASE)

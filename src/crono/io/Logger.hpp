@@ -213,6 +213,18 @@ if ((logger)?(logger->IsEnabledFor(level_)):(false)) {\
 #define CRONO_LOG_PLAIN_DEBUG(message) CRONO_LOG_PLAIN(CRONO_DEFAULT_LOGGER, ::crono::io::Logger::LevelDebug, message)
 #define CRONO_LOG_PLAIN_TRACE(message) CRONO_LOG_PLAIN(CRONO_DEFAULT_LOGGER, ::crono::io::Logger::LevelTrace, message)
 
+#define CRONO_LOG_LOCATION_DEBUG_TRACE(cond, message) \
+{ if ((cond)) { CRONO_LOG_LOCATION_DEBUG(message); } \
+  else { CRONO_LOG_LOCATION_TRACE(message); } }
+
+#define CRONO_LOG_FUNCTION_DEBUG_TRACE(cond, message) \
+{ if ((cond)) { CRONO_LOG_FUNCTION_DEBUG(message); } \
+  else { CRONO_LOG_FUNCTION_TRACE(message); } }
+
+#define CRONO_LOG_PLAIN_DEBUG_TRACE(cond, message) \
+{ if ((cond)) { CRONO_LOG_PLAIN_DEBUG(message); } \
+  else { CRONO_LOG_PLAIN_TRACE(message); } }
+
 #if defined(CRONO_PLAIN_LOGGING)
 #define CRONO_LOG_FATAL CRONO_LOG_PLAIN_FATAL
 #define CRONO_LOG_ERROR CRONO_LOG_PLAIN_ERROR
@@ -220,6 +232,7 @@ if ((logger)?(logger->IsEnabledFor(level_)):(false)) {\
 #define CRONO_LOG_INFO  CRONO_LOG_PLAIN_INFO
 #define CRONO_LOG_DEBUG CRONO_LOG_PLAIN_DEBUG
 #define CRONO_LOG_TRACE CRONO_LOG_PLAIN_TRACE
+#define CRONO_LOG_DEBUG_TRACE CRONO_LOG_PLAIN_DEBUG_TRACE
 #else // defined(CRONO_PLAIN_LOGGING)
 #if defined(CRONO_FUNCTION_LOGGING)
 #define CRONO_LOG_FATAL CRONO_LOG_FUNCTION_FATAL
@@ -228,6 +241,7 @@ if ((logger)?(logger->IsEnabledFor(level_)):(false)) {\
 #define CRONO_LOG_INFO  CRONO_LOG_FUNCTION_INFO
 #define CRONO_LOG_DEBUG CRONO_LOG_FUNCTION_DEBUG
 #define CRONO_LOG_TRACE CRONO_LOG_FUNCTION_TRACE
+#define CRONO_LOG_DEBUG_TRACE CRONO_LOG_FUNCTION_DEBUG_TRACE
 #else // defined(CRONO_FUNCTION_LOGGING)
 #define CRONO_LOG_FATAL CRONO_LOG_LOCATION_FATAL
 #define CRONO_LOG_ERROR CRONO_LOG_LOCATION_ERROR
@@ -235,6 +249,7 @@ if ((logger)?(logger->IsEnabledFor(level_)):(false)) {\
 #define CRONO_LOG_INFO  CRONO_LOG_LOCATION_INFO
 #define CRONO_LOG_DEBUG CRONO_LOG_LOCATION_DEBUG
 #define CRONO_LOG_TRACE CRONO_LOG_LOCATION_TRACE
+#define CRONO_LOG_DEBUG_TRACE CRONO_LOG_LOCATION_DEBUG_TRACE
 #endif // defined(CRONO_FUNCTION_LOGGING)
 #endif // defined(CRONO_PLAIN_LOGGING)
 
@@ -285,6 +300,66 @@ if ((logger)?(logger->IsEnabledFor(level_)):(false)) {\
 #define CRONO_LOG_MESSAGE_TRACE CRONO_LOG_FUNCTION_MESSAGE_TRACE
 #endif // defined(CRONO_LOCATION_MESSAGE_LOGGING)
 #endif // defined(CRONO_PLAIN_MESSAGE_LOGGING)
+
+///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
+#if !defined(XOS_LOG_FATAL)
+#define XOS_LOG_FATAL(message) CRONO_LOG_FATAL(message)
+#endif // !defined(XOS_LOG_FATAL)
+
+#if !defined(XOS_LOG_ERROR)
+#define XOS_LOG_ERROR(message) CRONO_LOG_ERROR(message)
+#endif // !defined(XOS_LOG_ERROR)
+
+#if !defined(XOS_LOG_WARN)
+#define XOS_LOG_WARN(message) CRONO_LOG_WARN(message)
+#endif // !defined(XOS_LOG_WARN)
+
+#if !defined(XOS_LOG_INFO)
+#define XOS_LOG_INFO(message) CRONO_LOG_INFO(message)
+#endif // !defined(XOS_LOG_INFO)
+
+#if !defined(XOS_LOG_DEBUG)
+#define XOS_LOG_DEBUG(message) CRONO_LOG_DEBUG(message)
+#endif // !defined(XOS_LOG_DEBUG)
+
+#if !defined(XOS_LOG_TRACE)
+#define XOS_LOG_TRACE(message) CRONO_LOG_TRACE(message)
+#endif // !defined(XOS_LOG_TRACE)
+
+#if !defined(XOS_LOG_DEBUG_TRACE)
+#define XOS_LOG_DEBUG_TRACE(cond, message) CRONO_LOG_DEBUG_TRACE(cond, message)
+#endif // !defined(XOS_LOG_DEBUG_TRACE)
+
+///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
+#if !defined(LOG_FATAL)
+#define LOG_FATAL(message) CRONO_LOG_FATAL(message)
+#endif // !defined(LOG_FATAL)
+
+#if !defined(LOG_ERROR)
+#define LOG_ERROR(message) CRONO_LOG_ERROR(message)
+#endif // !defined(LOG_ERROR)
+
+#if !defined(LOG_WARN)
+#define LOG_WARN(message) CRONO_LOG_WARN(message)
+#endif // !defined(LOG_WARN)
+
+#if !defined(LOG_INFO)
+#define LOG_INFO(message) CRONO_LOG_INFO(message)
+#endif // !defined(LOG_INFO)
+
+#if !defined(LOG_DEBUG)
+#define LOG_DEBUG(message) CRONO_LOG_DEBUG(message)
+#endif // !defined(LOG_DEBUG)
+
+#if !defined(LOG_TRACE)
+#define LOG_TRACE(message) CRONO_LOG_TRACE(message)
+#endif // !defined(LOG_TRACE)
+
+#if !defined(LOG_DEBUG_TRACE)
+#define LOG_DEBUG_TRACE(cond, message) CRONO_LOG_DEBUG_TRACE(cond, message)
+#endif // !defined(LOG_DEBUG_TRACE)
 
 ///////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////
