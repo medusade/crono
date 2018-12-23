@@ -48,7 +48,7 @@ $${libcrono_OBJECTIVE_HEADERS} \
 
 # OBJECTIVE_SOURCES
 #
-SOURCES += \
+OBJECTIVE_SOURCES += \
 $${libcrono_OBJECTIVE_SOURCES} \
 
 ########################################################################
@@ -56,12 +56,12 @@ $${libcrono_OBJECTIVE_SOURCES} \
 #
 HEADERS += \
 $${libcrono_HEADERS} \
+$${OBJECTIVE_HEADERS} \
 
 # SOURCES
 #
 SOURCES += \
 $${libcrono_SOURCES} \
-$${OBJECTIVE_SOURCES} \
 
 ########################################################################
 

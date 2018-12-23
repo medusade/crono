@@ -16,7 +16,7 @@
 #   File: crono.pri
 #
 # Author: $author$
-#   Date: 3/23/2018
+#   Date: 12/23/2018
 #
 # Os QtCreator .pri file for crono
 ########################################################################
@@ -123,4 +123,3 @@ crono_LIBS += \
 -lrt
 } else {
 }
-

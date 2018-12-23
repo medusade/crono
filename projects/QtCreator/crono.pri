@@ -16,7 +16,7 @@
 #   File: crono.pri
 #
 # Author: $author$
-#   Date: 3/23/2018
+#   Date: 12/23/2018
 #
 # QtCreator .pri file for crono
 ########################################################################
@@ -154,8 +154,8 @@ patrona_DEFINES += \
 
 ########################################################################
 # crono
-FRAMEWORK_NAME = crono
-FRAMEWORK_SOURCE = src
+CRONO_NAME = crono
+CRONO_SOURCE = src
 
 CRONO_PKG = ../../../../..
 CRONO_BLD = ../..
@@ -163,7 +163,7 @@ CRONO_BLD = ../..
 CRONO_PRJ = $${CRONO_PKG}
 CRONO_BIN = $${CRONO_BLD}/bin
 CRONO_LIB = $${CRONO_BLD}/lib
-CRONO_SRC = $${CRONO_PKG}/$${FRAMEWORK_SOURCE}
+CRONO_SRC = $${CRONO_PKG}/$${CRONO_SOURCE}
 
 # crono BUILD_CONFIG
 #
@@ -195,7 +195,5 @@ $${build_crono_DEFINES} \
 # crono LIBS
 #
 crono_LIBS += \
--L$${CRONO_LIB}/lib$${FRAMEWORK_NAME} \
--l$${FRAMEWORK_NAME} \
-
-
+-L$${CRONO_LIB}/lib$${CRONO_NAME} \
+-l$${CRONO_NAME} \

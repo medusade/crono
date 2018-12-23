@@ -53,12 +53,12 @@ $${crono_DEFINES} \
 # crono_exe HEADERS
 #
 crono_exe_HEADERS += \
-$${CRONO_SRC}/crono/console/Main_main.hpp \
+$${CRONO_SRC}/crono/app/console/crono/Main.hpp \
 
 # crono_exe SOURCES
 #
 crono_exe_SOURCES += \
-$${CRONO_SRC}/crono/console/Main_main.cpp \
+$${CRONO_SRC}/crono/app/console/crono/Main.cpp \
 
 ########################################################################
 # crono_exe FRAMEWORKS

@@ -80,6 +80,9 @@ $${CRONO_SRC}/crono/console/getopt/MainOpt.hpp \
 $${CRONO_SRC}/crono/console/Main.hpp \
 $${CRONO_SRC}/crono/console/Main_main.hpp \
 $${CRONO_SRC}/crono/console/MainLogger.hpp \
+\
+$${CRONO_SRC}/crono/lib/Version.hpp \
+$${CRONO_SRC}/crono/lib/crono/Version.hpp \
 
 # libcrono SOURCES
 #
@@ -102,5 +105,7 @@ $${CRONO_SRC}/crono/mt/os/Os.cpp \
 $${CRONO_SRC}/crono/console/getopt/Main.cpp \
 $${CRONO_SRC}/crono/console/getopt/MainOpt.cpp \
 $${CRONO_SRC}/crono/console/MainLogger.cpp \
+\
+$${CRONO_SRC}/crono/lib/crono/Version.cpp \
 
 ########################################################################
