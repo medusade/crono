@@ -55,7 +55,7 @@ protected:
     virtual int Run(int argc, char_t**argv, char_t** env) {
         const ::crono::lib::Version& version = ::crono::lib::crono::Version::Which();
         int err = 0;
-        this->OutL(version.Name(), " version = ", version.ToString().chars(), NULL);
+        this->OutL(version.Name(), " version = ", version.ToString().Chars(), NULL);
         this->OutLn();
         return err;
     }
