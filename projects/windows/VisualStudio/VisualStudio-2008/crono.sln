@@ -1,12 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Property Sheets", "Property Sheets", "{5CDB12AB-1334-4EB6-B9C9-FF6EA5434006}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "properties", "properties", "{5CDB12AB-1334-4EB6-B9C9-FF6EA5434006}"
 	ProjectSection(SolutionItems) = preProject
-		crono-vcversion.vsprops = crono-vcversion.vsprops
 		..\crono.vsprops = ..\crono.vsprops
 		..\nadir.vsprops = ..\nadir.vsprops
 		..\patrona.vsprops = ..\patrona.vsprops
+		..\rostra.vsprops = ..\rostra.vsprops
+		..\vcproj.vsprops = ..\vcproj.vsprops
+		vcversion.vsprops = vcversion.vsprops
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "app", "app", "{352F2DEC-E91B-4FD0-ABAC-9C15FC51A321}"
@@ -16,6 +18,11 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libcrono", "libcrono\libcrono.vcproj", "{AE1991FA-AAEE-4661-8927-99B372994D8D}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "hello", "hello\hello.vcproj", "{E93525AE-8382-4B04-885F-60BB8777CD2F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{AE1991FA-AAEE-4661-8927-99B372994D8D} = {AE1991FA-AAEE-4661-8927-99B372994D8D}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "crono", "crono\crono.vcproj", "{D038330B-136B-477C-83D8-60A0EA48D4AB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,12 +46,19 @@ Global
 		{E93525AE-8382-4B04-885F-60BB8777CD2F}.Release|Win32.ActiveCfg = Release|Win32
 		{E93525AE-8382-4B04-885F-60BB8777CD2F}.Release|Win32.Build.0 = Release|Win32
 		{E93525AE-8382-4B04-885F-60BB8777CD2F}.Release|x64.ActiveCfg = Release|Win32
+		{D038330B-136B-477C-83D8-60A0EA48D4AB}.Debug|Win32.ActiveCfg = Debug|Win32
+		{D038330B-136B-477C-83D8-60A0EA48D4AB}.Debug|Win32.Build.0 = Debug|Win32
+		{D038330B-136B-477C-83D8-60A0EA48D4AB}.Debug|x64.ActiveCfg = Debug|Win32
+		{D038330B-136B-477C-83D8-60A0EA48D4AB}.Release|Win32.ActiveCfg = Release|Win32
+		{D038330B-136B-477C-83D8-60A0EA48D4AB}.Release|Win32.Build.0 = Release|Win32
+		{D038330B-136B-477C-83D8-60A0EA48D4AB}.Release|x64.ActiveCfg = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{E93525AE-8382-4B04-885F-60BB8777CD2F} = {352F2DEC-E91B-4FD0-ABAC-9C15FC51A321}
+		{D038330B-136B-477C-83D8-60A0EA48D4AB} = {352F2DEC-E91B-4FD0-ABAC-9C15FC51A321}
 		{AE1991FA-AAEE-4661-8927-99B372994D8D} = {5FD626D0-5DA9-4374-A200-4474311E408F}
 	EndGlobalSection
 EndGlobal
