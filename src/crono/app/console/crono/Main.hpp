@@ -21,16 +21,15 @@
 #ifndef _CRONO_APP_CONSOLE_CRONO_MAIN_HPP
 #define _CRONO_APP_CONSOLE_CRONO_MAIN_HPP
 
-#include "crono/console/Main.hpp"
-#include "crono/lib/crono/Version.hpp"
+#include "crono/console/lib/crono/version/Main.hpp"
 
 namespace crono {
 namespace app {
 namespace console {
 namespace crono {
 
-typedef ::crono::console::Main::Implements MainImplements;
-typedef ::crono::console::Main MainExtends;
+typedef ::crono::console::lib::crono::version::Main::Implements MainImplements;
+typedef ::crono::console::lib::crono::version::Main MainExtends;
 ///////////////////////////////////////////////////////////////////////
 ///  Class: Main
 ///////////////////////////////////////////////////////////////////////
@@ -38,10 +37,11 @@ class _EXPORT_CLASS Main: virtual public MainImplements, public MainExtends {
 public:
     typedef MainImplements Implements;
     typedef MainExtends Extends;
+    typedef Main Derives;
 
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
-    Main() {
+    Main(): m_run(0) {
     }
     virtual ~Main() {
     }
@@ -52,11 +52,18 @@ private:
 protected:
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
+    int (Derives::*m_run)(int argc, char_t**argv, char_t** env);
     virtual int Run(int argc, char_t**argv, char_t** env) {
-        const ::crono::lib::Version& version = ::crono::lib::crono::Version::Which();
         int err = 0;
-        this->OutL(version.Name(), " version = ", version.ToString().Chars(), NULL);
-        this->OutLn();
+        if ((m_run)) {
+            LOG_DEBUG("(this->*m_run)(argc, argv, env)...");
+            err = (this->*m_run)(argc, argv, env);
+            LOG_DEBUG("..." << err << " = (this->*m_run)(argc, argv, env)...");
+        } else {
+            LOG_DEBUG("Extends::Run(argc, argv, env)...");
+            err = Extends::Run(argc, argv, env);
+            LOG_DEBUG("..." << err << " = Extends::Run(argc, argv, env)");
+        }
         return err;
     }
 

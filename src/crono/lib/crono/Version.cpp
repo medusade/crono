@@ -21,7 +21,7 @@
 #include "crono/lib/crono/Version.hpp"
 
 #if !defined(CRONO_LIB_CRONO_VERSION_NAME)
-#define CRONO_LIB_CRONO_VERSION_NAME "crono"
+#define CRONO_LIB_CRONO_VERSION_NAME "libcrono"
 #endif /// !defined(CRONO_LIB_CRONO_VERSION_NAME)
 
 #if !defined(CRONO_LIB_CRONO_VERSION_MAJOR)
