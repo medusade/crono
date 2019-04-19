@@ -103,7 +103,6 @@ $${CRONO_SRC}/crono/mt/os/Mutex.cpp \
 $${CRONO_SRC}/crono/mt/os/Os.cpp \
 \
 $${CRONO_SRC}/crono/console/getopt/Main.cpp \
-$${CRONO_SRC}/crono/console/getopt/MainOpt.cpp \
 $${CRONO_SRC}/crono/console/MainLogger.cpp \
 \
 $${CRONO_SRC}/crono/lib/crono/Version.cpp \
