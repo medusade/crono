@@ -28,7 +28,7 @@
 #define CRONO_MAIN_LOGGING_OPT "logging-level"
 #define CRONO_MAIN_LOGGING_OPTARG_REQUIRED MAIN_OPT_ARGUMENT_REQUIRED
 #define CRONO_MAIN_LOGGING_OPTARG_RESULT 0
-#define CRONO_MAIN_LOGGING_OPTARG "{(a)all | (n)none | (f)fatal | (e)error | (w)waring | (i)info | (d)debug | (t)trace}"
+#define CRONO_MAIN_LOGGING_OPTARG "{ (a)all | (n)none | (f)fatal | (e)error | (w)waring | (i)info | (d)debug | (t)trace }"
 #define CRONO_MAIN_LOGGING_OPTARG_C_ALL 'a'
 #define CRONO_MAIN_LOGGING_OPTARG_C_NONE 'n'
 #define CRONO_MAIN_LOGGING_OPTARG_C_FATAL 'f'
