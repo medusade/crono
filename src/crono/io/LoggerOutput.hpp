@@ -16,7 +16,7 @@
 ///   File: LoggerOutput.hpp
 ///
 /// Author: $author$
-///   Date: 12/23/2018
+///   Date: 12/23/2018, 12/26/2020
 ///////////////////////////////////////////////////////////////////////
 #ifndef _CRONO_IO_LOGGEROUTPUT_HPP
 #define _CRONO_IO_LOGGEROUTPUT_HPP
@@ -217,8 +217,47 @@ protected:
 
 ///////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////
+#if !defined(CRONO_NO_ERR_LOG_TRACE)
+#if defined(XOS_DEFAULT_LOG_NONE) || defined(XOS_DEFAULT_LOG_DEBUG) || defined(XOS_DEFAULT_LOG_ERROR)
+#define CRONO_NO_ERR_LOG_TRACE
+#endif // defined(XOS_DEFAULT_LOG_NONE) || defined(XOS_DEFAULT_LOG_DEBUG) || defined(XOS_DEFAULT_LOG_ERROR)
+#endif // !defined(CRONO_NO_ERR_LOG_TRACE)
 
-#if defined(TRACE_BUILD)
+#if !defined(CRONO_NO_ERR_LOG_DEBUG)
+#if defined(XOS_DEFAULT_LOG_NONE) || defined(XOS_DEFAULT_LOG_ERROR)
+#define CRONO_NO_ERR_LOG_DEBUG
+#endif // defined(XOS_DEFAULT_LOG_NONE) || defined(XOS_DEFAULT_LOG_ERROR)
+#endif // !defined(CRONO_NO_ERR_LOG_DEBUG)
+
+#if !defined(CRONO_NO_ERR_LOG_ERROR)
+#if defined(XOS_DEFAULT_LOG_NONE)
+#define CRONO_NO_ERR_LOG_ERROR
+#endif // defined(XOS_DEFAULT_LOG_NONE)
+#endif // !defined(CRONO_NO_ERR_LOG_ERROR)
+
+///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
+#if !defined(CRONO_NO_ERR_LOG_TRACE)
+#if defined(DEFAULT_LOG_NONE) || defined(DEFAULT_LOG_DEBUG) || defined(DEFAULT_LOG_ERROR)
+#define CRONO_NO_ERR_LOG_TRACE
+#endif // defined(DEFAULT_LOG_NONE) || defined(DEFAULT_LOG_DEBUG) || defined(DEFAULT_LOG_ERROR)
+#endif // !defined(CRONO_NO_ERR_LOG_TRACE)
+
+#if !defined(CRONO_NO_ERR_LOG_DEBUG)
+#if defined(DEFAULT_LOG_NONE) || defined(DEFAULT_LOG_ERROR)
+#define CRONO_NO_ERR_LOG_DEBUG
+#endif // defined(DEFAULT_LOG_NONE) || defined(DEFAULT_LOG_ERROR)
+#endif // !defined(CRONO_NO_ERR_LOG_DEBUG)
+
+#if !defined(CRONO_NO_ERR_LOG_ERROR)
+#if defined(DEFAULT_LOG_NONE)
+#define CRONO_NO_ERR_LOG_ERROR
+#endif // defined(DEFAULT_LOG_NONE)
+#endif // !defined(CRONO_NO_ERR_LOG_ERROR)
+
+///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
+#if defined(TRACE_BUILD) && !defined(CRONO_NO_ERR_LOG_TRACE)
 #define CRONO_CERR_LOG_TRACE(message_) CRONO_CERR_LOG(message_)
 #define CRONO_STDERR_LOG_TRACE(message_) CRONO_STDERR_LOG(message_)
 #define CRONO_CERR_LOG_PLAIN_TRACE(message_) CRONO_CERR_LOG_PLAIN(message_)
@@ -227,7 +266,7 @@ protected:
 #define CRONO_STDERR_LOG_FUNCTION_TRACE(message_) CRONO_STDERR_LOG_FUNCTION(message_)
 #define CRONO_CERR_LOG_LOCATION_TRACE(message_) CRONO_CERR_LOG_LOCATION(message_)
 #define CRONO_STDERR_LOG_LOCATION_TRACE(message_) CRONO_STDERR_LOG_LOCATION(message_)
-#else // defined(TRACE_BUILD)
+#else // defined(TRACE_BUILD) && !defined(CRONO_NO_ERR_LOG_TRACE)
 #define CRONO_CERR_LOG_TRACE(message_)
 #define CRONO_STDERR_LOG_TRACE(message_)
 #define CRONO_CERR_LOG_PLAIN_TRACE(message_)
@@ -236,9 +275,9 @@ protected:
 #define CRONO_STDERR_LOG_FUNCTION_TRACE(message_)
 #define CRONO_CERR_LOG_LOCATION_TRACE(message_)
 #define CRONO_STDERR_LOG_LOCATION_TRACE(message_)
-#endif // defined(TRACE_BUILD)
+#endif // defined(TRACE_BUILD) && !defined(CRONO_NO_ERR_LOG_TRACE)
 
-#if defined(DEBUG_BUILD)
+#if defined(DEBUG_BUILD) && !defined(CRONO_NO_ERR_LOG_DEBUG)
 #define CRONO_CERR_LOG_DEBUG(message_) CRONO_CERR_LOG(message_)
 #define CRONO_STDERR_LOG_DEBUG(message_) CRONO_STDERR_LOG(message_)
 #define CRONO_CERR_LOG_PLAIN_DEBUG(message_) CRONO_CERR_LOG_PLAIN(message_)
@@ -247,15 +286,18 @@ protected:
 #define CRONO_STDERR_LOG_FUNCTION_DEBUG(message_) CRONO_STDERR_LOG_FUNCTION(message_)
 #define CRONO_CERR_LOG_LOCATION_DEBUG(message_) CRONO_CERR_LOG_LOCATION(message_)
 #define CRONO_STDERR_LOG_LOCATION_DEBUG(message_) CRONO_STDERR_LOG_LOCATION(message_)
-#else // defined(DEBUG_BUILD)
+#else // defined(DEBUG_BUILD) && !defined(CRONO_NO_ERR_LOG_DEBUG)
 #define CRONO_CERR_LOG_DEBUG(message_)
 #define CRONO_STDERR_LOG_DEBUG(message_)
+#define CRONO_CERR_LOG_PLAIN_DEBUG(message__)
+#define CRONO_STDERR_LOG_PLAIN_DEBUG(message_)
 #define CRONO_CERR_LOG_FUNCTION_DEBUG(message_)
 #define CRONO_STDERR_LOG_FUNCTION_DEBUG(message_)
 #define CRONO_CERR_LOG_LOCATION_DEBUG(message_)
 #define CRONO_STDERR_LOG_LOCATION_DEBUG(message_)
-#endif // defined(DEBUG_BUILD)
+#endif // defined(DEBUG_BUILD) && !defined(CRONO_NO_ERR_LOG_DEBUG)
 
+#if !defined(CRONO_NO_ERR_LOG_ERROR)
 #define CRONO_CERR_LOG_ERROR(message_) CRONO_CERR_LOG(message_)
 #define CRONO_STDERR_LOG_ERROR(message_) CRONO_STDERR_LOG(message_)
 #define CRONO_CERR_LOG_PLAIN_ERROR(message_) CRONO_CERR_LOG_PLAIN(message_)
@@ -264,6 +306,16 @@ protected:
 #define CRONO_STDERR_LOG_FUNCTION_ERROR(message_) CRONO_STDERR_LOG_FUNCTION(message_)
 #define CRONO_CERR_LOG_LOCATION_ERROR(message_) CRONO_CERR_LOG_LOCATION(message_)
 #define CRONO_STDERR_LOG_LOCATION_ERROR(message_) CRONO_STDERR_LOG_LOCATION(message_)
+#else // !defined(CRONO_NO_ERR_LOG_ERROR)
+#define CRONO_CERR_LOG_ERROR(message_)
+#define CRONO_STDERR_LOG_ERROR(message_)
+#define CRONO_CERR_LOG_PLAIN_ERROR(message_)
+#define CRONO_STDERR_LOG_PLAIN_ERROR(message_)
+#define CRONO_CERR_LOG_FUNCTION_ERROR(message_)
+#define CRONO_STDERR_LOG_FUNCTION_ERROR(message_)
+#define CRONO_CERR_LOG_LOCATION_ERROR(message_)
+#define CRONO_STDERR_LOG_LOCATION_ERROR(message_)
+#endif // !defined(CRONO_NO_ERR_LOG_ERROR)
 
 #if defined(CRONO_CERR_LOGGING)
 #define CRONO_ERR_LOG_TRACE(message_) CRONO_CERR_LOG_TRACE(message_)
