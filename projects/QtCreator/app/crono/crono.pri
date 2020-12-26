@@ -16,7 +16,7 @@
 #   File: crono.pri
 #
 # Author: $author$
-#   Date: 3/23/2018
+#   Date: 3/23/2018, 12/26/2020
 #
 # QtCreator .pri file for crono executable crono
 ########################################################################
@@ -37,6 +37,7 @@ $${crono_INCLUDEPATH} \
 #
 crono_exe_DEFINES += \
 $${crono_DEFINES} \
+XOS_DEFAULT_LOG_ERROR \
 
 ########################################################################
 # crono_exe OBJECTIVE_HEADERS

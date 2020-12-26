@@ -16,10 +16,11 @@
 #   File: libcrono.pro
 #
 # Author: $author$
-#   Date: 3/23/2018
+#   Date: 3/23/2018, 12/26/2020
 #
 # QtCreator .pro file for crono library libcrono
 ########################################################################
+include(../../../../../../build/QtCreator/crono.pri)
 include(../../../../../build/QtCreator/crono.pri)
 include(../../../../QtCreator/crono.pri)
 include(../../crono.pri)
@@ -56,7 +57,7 @@ $${libcrono_OBJECTIVE_SOURCES} \
 #
 HEADERS += \
 $${libcrono_HEADERS} \
-$${OBJECTIVE_HEADERS} \
+$${libcrono_OBJECTIVE_HEADERS} \
 
 # SOURCES
 #

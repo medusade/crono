@@ -16,10 +16,11 @@
 #   File: crono.pro
 #
 # Author: $author$
-#   Date: 3/23/2018
+#   Date: 3/23/2018, 12/26/2020
 #
 # QtCreator .pro file for crono executable crono
 ########################################################################
+include(../../../../../../build/QtCreator/crono.pri)
 include(../../../../../build/QtCreator/crono.pri)
 include(../../../../QtCreator/crono.pri)
 include(../../crono.pri)
@@ -54,12 +55,12 @@ $${crono_exe_OBJECTIVE_SOURCES} \
 #
 HEADERS += \
 $${crono_exe_HEADERS} \
+$${crono_exe_OBJECTIVE_HEADERS} \
 
 # SOURCES
 #
 SOURCES += \
 $${crono_exe_SOURCES} \
-$${OBJECTIVE_SOURCES} \
 
 ########################################################################
 # FRAMEWORKS
