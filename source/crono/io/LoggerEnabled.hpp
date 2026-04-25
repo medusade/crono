@@ -1,22 +1,22 @@
 ///////////////////////////////////////////////////////////////////////
 /// Copyright (c) 1988-2018 $organization$
 ///
-/// This software is provided by the author and contributors ``as is'' 
-/// and any express or implied warranties, including, but not limited to, 
-/// the implied warranties of merchantability and fitness for a particular 
-/// purpose are disclaimed. In no event shall the author or contributors 
-/// be liable for any direct, indirect, incidental, special, exemplary, 
-/// or consequential damages (including, but not limited to, procurement 
-/// of substitute goods or services; loss of use, data, or profits; or 
-/// business interruption) however caused and on any theory of liability, 
-/// whether in contract, strict liability, or tort (including negligence 
-/// or otherwise) arising in any way out of the use of this software, 
+/// This software is provided by the author and contributors ``as is''
+/// and any express or implied warranties, including, but not limited to,
+/// the implied warranties of merchantability and fitness for a particular
+/// purpose are disclaimed. In no event shall the author or contributors
+/// be liable for any direct, indirect, incidental, special, exemplary,
+/// or consequential damages (including, but not limited to, procurement
+/// of substitute goods or services; loss of use, data, or profits; or
+/// business interruption) however caused and on any theory of liability,
+/// whether in contract, strict liability, or tort (including negligence
+/// or otherwise) arising in any way out of the use of this software,
 /// even if advised of the possibility of such damage.
 ///
 ///   File: LoggerEnabled.hpp
 ///
 /// Author: $author$
-///   Date: 12/23/2018, 2/27/2024
+///   Date: 12/23/2018, 4/25/2026
 ///////////////////////////////////////////////////////////////////////
 #ifndef _CRONO_IO_LOGGERENABLED_HPP
 #define _CRONO_IO_LOGGERENABLED_HPP
@@ -43,7 +43,7 @@ public:
     enum {
         LevelNone  = 0,
 
-        LevelFatalShift,
+        LevelFatalShift = 0,
         LevelErrorShift,
         LevelWarnShift,
         LevelInfoShift,
@@ -122,8 +122,8 @@ public:
     ///////////////////////////////////////////////////////////////////////
 };
 
-} // namespace io 
-} // namespace crono 
+} // namespace io
+} // namespace crono
 
 ///////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////
@@ -207,4 +207,4 @@ public:
 ///////////////////////////////////////////////////////////////////////
 #endif // defined(USE_NADIR_BASE)
 
-#endif // _CRONO_IO_LOGGERENABLED_HPP 
+#endif // _CRONO_IO_LOGGERENABLED_HPP
