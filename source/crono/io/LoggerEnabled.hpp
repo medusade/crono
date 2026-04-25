@@ -43,6 +43,13 @@ public:
     enum {
         LevelNone  = 0,
 
+        LevelFatalShift,
+        LevelErrorShift,
+        LevelWarnShift,
+        LevelInfoShift,
+        LevelDebugShift,
+        LevelTraceShift,
+
         LevelFatal = 1,
         LevelError = (LevelFatal << 1),
         LevelWarn  = (LevelError << 1),
@@ -61,7 +68,7 @@ public:
         MessageLevelDebug = (MessageLevelInfo << 1),
         MessageLevelTrace = (MessageLevelDebug << 1),
 
-        MessageLevelAll   = ((LevelAll << LevelTrace))
+        MessageLevelAll   = ((LevelAll << LevelTraceShift))
     };
     typedef Level Levels;
     enum {
@@ -78,12 +85,12 @@ public:
 
         MessageLevelsNone  = 0,
 
-        MessageLevelsFatal = (((LevelsFatal) << LevelTrace)),
-        MessageLevelsError = (((LevelsError) << LevelTrace)),
-        MessageLevelsWarn  = (((LevelsWarn) << LevelTrace)),
-        MessageLevelsInfo  = (((LevelsInfo) << LevelTrace)),
-        MessageLevelsDebug = (((LevelsDebug) << LevelTrace)),
-        MessageLevelsTrace = (((LevelsTrace) << LevelTrace)),
+        MessageLevelsFatal = (((LevelsFatal) << LevelTraceShift)),
+        MessageLevelsError = (((LevelsError) << LevelTraceShift)),
+        MessageLevelsWarn  = (((LevelsWarn) << LevelTraceShift)),
+        MessageLevelsInfo  = (((LevelsInfo) << LevelTraceShift)),
+        MessageLevelsDebug = (((LevelsDebug) << LevelTraceShift)),
+        MessageLevelsTrace = (((LevelsTrace) << LevelTraceShift)),
 
         MessageLevelsAll   = MessageLevelsTrace
     };
